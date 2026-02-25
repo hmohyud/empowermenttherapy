@@ -1,0 +1,17 @@
+# Temp/build files
+_raw/
+_extracted_zip/
+css/
+
+# OS files
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+.claude/

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - The Empowerment Institute</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sorts+Mill+Goudy:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <a href="index.html" class="logo">
+        <img src="images/logo.png" alt="The Empowerment Institute">
+      </a>
+      <button class="menu-toggle" aria-label="Toggle navigation" onclick="document.querySelector('nav').classList.toggle('active')">
+        <span></span><span></span><span></span>
+      </button>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="our-values.html">Our Values</a>
+        <a href="team.html">Team</a>
+        <a href="resources.html">Resources</a>
+        <a href="contact.html" class="active">Contact Us</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <img src="images/hero-contact.png" alt="Contact Us">
+  </section>
+
+  <section class="fade-in">
+    <div class="container">
+      <h1>Contact Us</h1>
+    </div>
+  </section>
+
+  <section class="fade-in">
+    <div class="container">
+      <div class="contact-info">
+        <p>Email: <a href="mailto:empowermenttherapyinstitute@gmail.com">empowermenttherapyinstitute@gmail.com</a></p>
+        <p>Phone: <a href="tel:630-881-2525">630-881-2525</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="fade-in">
+    <div class="container">
+      <div class="contact-team">
+        <figure>
+          <img src="images/contact-simran.jpg" alt="Simran">
+          <figcaption>Simran</figcaption>
+        </figure>
+        <figure>
+          <img src="images/contact-myra.jpg" alt="Myra">
+          <figcaption>Myra</figcaption>
+        </figure>
+        <figure>
+          <img src="images/contact-priti.jpg" alt="Priti">
+          <figcaption>Priti</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="fade-in">
+    <div class="container">
+      <form class="contact-form" action="mailto:empowermenttherapyinstitute@gmail.com" method="post" enctype="text/plain">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="6" required></textarea>
+        </div>
+        <button type="submit" class="btn">Send</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Reach out to us!</h4>
+          <a href="contact.html">Contact</a>
+          <div class="team-photos">
+            <figure><img src="images/footer-simran.jpg" alt="Simran"><figcaption>Simran</figcaption></figure>
+            <figure><img src="images/footer-myra.jpg" alt="Myra"><figcaption>Myra</figcaption></figure>
+            <figure><img src="images/footer-priti.jpg" alt="Priti"><figcaption>Priti</figcaption></figure>
+          </div>
+          <div class="social-links">
+            <a href="https://www.instagram.com/empowerment.therapy/" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+            <a href="https://www.facebook.com/IEC.EmpoweringCommunication/" target="_blank" rel="noopener" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Team</h4>
+          <a href="team.html">Our Team</a>
+          <h4 style="margin-top:1.5rem">Our Values</h4>
+          <a href="our-values.html">Vision, Mission & Values</a>
+          <h4 style="margin-top:1.5rem">Free Resources</h4>
+          <a href="resources.html">Articles & Tools</a>
+          <div style="margin-top:2rem">
+            <a href="https://www.paypal.com/ncp/payment/JT9X4BBKNB9ZE" target="_blank" rel="noopener" class="paypal-qr"><img src="images/paypal-qr.png" alt="PayPal QR Code"></a>
+            <a href="https://www.paypal.com/ncp/payment/JT9X4BBKNB9ZE" target="_blank" rel="noopener" class="btn" style="margin-top:0.5rem">Make a Payment</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <a href="https://www.amazon.com/Empowerment-Therapy-Helping-Clients-Fulfilling/dp/1737588420" target="_blank" rel="noopener" class="book-link"><img src="images/book-cover.png" alt="Empowerment Therapy Book"></a>
+          <a href="https://www.amazon.com/Empowerment-Therapy-Helping-Clients-Fulfilling/dp/1737588420" target="_blank" rel="noopener">The book is available here.</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Empowerment Therapy Institute. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          if (entry.target.classList.contains('fade-in-group')) {
+            entry.target.querySelectorAll(':scope > *').forEach(child => child.classList.add('visible'));
+          }
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.fade-in, .fade-in-group').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
