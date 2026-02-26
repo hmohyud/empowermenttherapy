@@ -6,12 +6,15 @@
   <title>Team - The Empowerment Institute</title>
   <link href="https://fonts.googleapis.com/css2?family=Sorts+Mill+Goudy:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
 </head>
 <body>
 
+  <div class="scroll-progress" id="scrollProgress"></div>
+
   <header>
     <div class="container">
-      <a href="index.html" class="logo">
+      <a href="index.html" class="logo logo-flourish-botanical">
         <img src="images/logo.png" alt="The Empowerment Institute">
       </a>
       <button class="menu-toggle" aria-label="Toggle navigation" onclick="document.querySelector('nav').classList.toggle('active')">
@@ -27,17 +30,21 @@
     </div>
   </header>
 
-  <section class="hero">
-    <img src="images/hero-team.jpg" alt="Our Team">
-  </section>
+  <div class="page-spacer"></div>
 
   <section class="fade-in">
     <div class="container">
       <h1>Our Team</h1>
+      <div class="section-divider divider-leaf"><span class="ornament"></span></div>
     </div>
   </section>
 
   <section class="fade-in">
+    <div class="flower-bush bush-left" data-lottie-bunch>
+      <dotlottie-player src="https://assets-v2.lottiefiles.com/a/9832e6c6-ab0f-11ee-8510-8712bf50bcb3/3LrxvNoNVh.json" background="transparent" speed="0.5" style="width:55px;height:55px;" autoplay></dotlottie-player>
+      <dotlottie-player src="https://assets-v2.lottiefiles.com/a/b684753a-ab15-11ee-a365-af4e02a1714a/SkZNxwiAo4.json" background="transparent" speed="0.6" style="width:85px;height:85px;" autoplay></dotlottie-player>
+      <dotlottie-player src="https://assets-v2.lottiefiles.com/a/4d94e242-ad51-11ee-b32a-e31f3aabbd8f/SWUMzWkPG7.json" background="transparent" speed="0.5" style="width:70px;height:70px;" autoplay></dotlottie-player>
+    </div>
     <div class="container">
       <div class="team-member">
         <img src="images/team-myra.jpg" alt="Myra Walden">
@@ -54,6 +61,11 @@
   </section>
 
   <section class="fade-in">
+    <div class="flower-bush bush-right" data-lottie-bunch>
+      <dotlottie-player src="https://assets-v2.lottiefiles.com/a/9832e6c6-ab0f-11ee-8510-8712bf50bcb3/3LrxvNoNVh.json" background="transparent" speed="0.5" style="width:55px;height:55px;" autoplay></dotlottie-player>
+      <dotlottie-player src="https://assets-v2.lottiefiles.com/a/b684753a-ab15-11ee-a365-af4e02a1714a/SkZNxwiAo4.json" background="transparent" speed="0.6" style="width:85px;height:85px;" autoplay></dotlottie-player>
+      <dotlottie-player src="https://assets-v2.lottiefiles.com/a/4d94e242-ad51-11ee-b32a-e31f3aabbd8f/SWUMzWkPG7.json" background="transparent" speed="0.5" style="width:70px;height:70px;" autoplay></dotlottie-player>
+    </div>
     <div class="container">
       <div class="team-member">
         <img src="images/team-priti.jpg" alt="Priti Sureka">
@@ -70,6 +82,11 @@
   </section>
 
   <section class="fade-in">
+    <div class="flower-bush bush-left" data-lottie-bunch>
+      <dotlottie-player src="https://assets-v2.lottiefiles.com/a/9832e6c6-ab0f-11ee-8510-8712bf50bcb3/3LrxvNoNVh.json" background="transparent" speed="0.5" style="width:55px;height:55px;" autoplay></dotlottie-player>
+      <dotlottie-player src="https://assets-v2.lottiefiles.com/a/b684753a-ab15-11ee-a365-af4e02a1714a/SkZNxwiAo4.json" background="transparent" speed="0.6" style="width:85px;height:85px;" autoplay></dotlottie-player>
+      <dotlottie-player src="https://assets-v2.lottiefiles.com/a/4d94e242-ad51-11ee-b32a-e31f3aabbd8f/SWUMzWkPG7.json" background="transparent" speed="0.5" style="width:70px;height:70px;" autoplay></dotlottie-player>
+    </div>
     <div class="container">
       <div class="team-member">
         <img src="images/team-simran.jpg" alt="Simran Bhola">
@@ -87,15 +104,10 @@
 
   <footer>
     <div class="container">
-      <div class="footer-grid">
-        <div class="footer-col">
-          <h4>Reach out to us!</h4>
-          <a href="contact.html">Contact</a>
-          <div class="team-photos">
-            <figure><img src="images/footer-simran.jpg" alt="Simran"><figcaption>Simran</figcaption></figure>
-            <figure><img src="images/footer-myra.jpg" alt="Myra"><figcaption>Myra</figcaption></figure>
-            <figure><img src="images/footer-priti.jpg" alt="Priti"><figcaption>Priti</figcaption></figure>
-          </div>
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="footer-logo"><img src="images/logo.png" alt="The Empowerment Institute"></a>
+          <p class="footer-tagline">Healing. Liberation. Empowerment.</p>
           <div class="social-links">
             <a href="https://www.instagram.com/empowerment.therapy/" target="_blank" rel="noopener" aria-label="Instagram">
               <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
@@ -105,22 +117,33 @@
             </a>
           </div>
         </div>
-        <div class="footer-col">
-          <h4>Team</h4>
-          <a href="team.html">Our Team</a>
-          <h4 style="margin-top:1.5rem">Our Values</h4>
-          <a href="our-values.html">Vision, Mission & Values</a>
-          <h4 style="margin-top:1.5rem">Free Resources</h4>
-          <a href="resources.html">Articles & Tools</a>
-          <div style="margin-top:2rem">
-            <a href="https://www.paypal.com/ncp/payment/JT9X4BBKNB9ZE" target="_blank" rel="noopener" class="paypal-qr"><img src="images/paypal-qr.png" alt="PayPal QR Code"></a>
-            <a href="https://www.paypal.com/ncp/payment/JT9X4BBKNB9ZE" target="_blank" rel="noopener" class="btn" style="margin-top:0.5rem">Make a Payment</a>
+        <div class="footer-nav">
+          <h4>Navigate</h4>
+          <a href="index.html">Home</a>
+          <a href="our-values.html">Our Values</a>
+          <a href="team.html">Team</a>
+          <a href="resources.html">Resources</a>
+          <a href="contact.html">Contact Us</a>
+        </div>
+        <div class="footer-contact">
+          <h4>Get in Touch</h4>
+          <div class="team-photos">
+            <figure><img src="images/footer-simran.jpg" alt="Simran"><figcaption>Simran</figcaption></figure>
+            <figure><img src="images/footer-myra.jpg" alt="Myra"><figcaption>Myra</figcaption></figure>
+            <figure><img src="images/footer-priti.jpg" alt="Priti"><figcaption>Priti</figcaption></figure>
           </div>
+          <a href="mailto:empowermenttherapyinstitute@gmail.com" class="footer-email">empowermenttherapyinstitute@gmail.com</a>
         </div>
-        <div class="footer-col">
-          <a href="https://www.amazon.com/Empowerment-Therapy-Helping-Clients-Fulfilling/dp/1737588420" target="_blank" rel="noopener" class="book-link"><img src="images/book-cover.png" alt="Empowerment Therapy Book"></a>
-          <a href="https://www.amazon.com/Empowerment-Therapy-Helping-Clients-Fulfilling/dp/1737588420" target="_blank" rel="noopener">The book is available here.</a>
-        </div>
+      </div>
+      <div class="footer-mid">
+        <a href="https://www.amazon.com/Empowerment-Therapy-Helping-Clients-Fulfilling/dp/1737588420" target="_blank" rel="noopener" class="footer-book">
+          <img src="images/book-cover.png" alt="Empowerment Therapy Book">
+          <span>Get the Book</span>
+        </a>
+        <a href="https://www.paypal.com/ncp/payment/JT9X4BBKNB9ZE" target="_blank" rel="noopener" class="footer-paypal">
+          <img src="images/paypal-qr.png" alt="PayPal QR Code">
+          <span>Make a Payment</span>
+        </a>
       </div>
       <div class="footer-bottom">
         <p>&copy; 2026 Empowerment Therapy Institute. All rights reserved.</p>
@@ -138,8 +161,40 @@
           }
         }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-    document.querySelectorAll('.fade-in, .fade-in-group').forEach(el => observer.observe(el));
+    }, { threshold: 0.02, rootMargin: '0px 0px 50px 0px' });
+    document.querySelectorAll('.fade-in, .fade-in-group, .slide-left, .slide-right, .scale-in').forEach(el => observer.observe(el));
+
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      if (window.scrollY > 10) { header.classList.add('scrolled'); } else { header.classList.remove('scrolled'); }
+      const bar = document.getElementById('scrollProgress');
+      if (bar) { const h = document.documentElement.scrollHeight - window.innerHeight; bar.style.width = (window.scrollY / h * 100) + '%'; }
+    });
+
+    const bunchObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const bunch = entry.target;
+          bunch.classList.add('grown');
+          bunch.querySelectorAll('dotlottie-player').forEach(player => {
+            player.removeAttribute('loop');
+            if (player.play) player.play();
+            player.addEventListener('complete', () => {
+              player.pause();
+              player.setSeeker(100);
+            }, { once: true });
+          });
+          bunchObserver.unobserve(bunch);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('[data-lottie-bunch]').forEach(bunch => {
+      bunch.querySelectorAll('dotlottie-player').forEach(player => {
+        player.addEventListener('ready', () => { player.pause(); }, { once: true });
+      });
+      bunchObserver.observe(bunch);
+    });
   </script>
 
 </body>
