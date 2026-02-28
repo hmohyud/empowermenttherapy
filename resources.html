@@ -6,7 +6,6 @@
   <title>Resources - The Empowerment Institute</title>
   <link href="https://fonts.googleapis.com/css2?family=Sorts+Mill+Goudy:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
 </head>
 <body>
 
@@ -40,11 +39,6 @@
   </section>
 
   <section class="fade-in">
-    <div class="flower-bush bush-left" data-lottie-bunch>
-      <dotlottie-player src="https://assets-v2.lottiefiles.com/a/9832e6c6-ab0f-11ee-8510-8712bf50bcb3/3LrxvNoNVh.json" background="transparent" speed="0.5" style="width:55px;height:55px;" autoplay></dotlottie-player>
-      <dotlottie-player src="https://assets-v2.lottiefiles.com/a/b684753a-ab15-11ee-a365-af4e02a1714a/SkZNxwiAo4.json" background="transparent" speed="0.6" style="width:85px;height:85px;" autoplay></dotlottie-player>
-      <dotlottie-player src="https://assets-v2.lottiefiles.com/a/4d94e242-ad51-11ee-b32a-e31f3aabbd8f/SWUMzWkPG7.json" background="transparent" speed="0.5" style="width:70px;height:70px;" autoplay></dotlottie-player>
-    </div>
     <div class="container">
       <h2>Articles</h2>
       <div class="section-divider"><span class="ornament"></span></div>
@@ -74,11 +68,6 @@
   </section>
 
   <section class="fade-in">
-    <div class="flower-bush bush-right" data-lottie-bunch>
-      <dotlottie-player src="https://assets-v2.lottiefiles.com/a/9832e6c6-ab0f-11ee-8510-8712bf50bcb3/3LrxvNoNVh.json" background="transparent" speed="0.5" style="width:55px;height:55px;" autoplay></dotlottie-player>
-      <dotlottie-player src="https://assets-v2.lottiefiles.com/a/b684753a-ab15-11ee-a365-af4e02a1714a/SkZNxwiAo4.json" background="transparent" speed="0.6" style="width:85px;height:85px;" autoplay></dotlottie-player>
-      <dotlottie-player src="https://assets-v2.lottiefiles.com/a/4d94e242-ad51-11ee-b32a-e31f3aabbd8f/SWUMzWkPG7.json" background="transparent" speed="0.5" style="width:70px;height:70px;" autoplay></dotlottie-player>
-    </div>
     <div class="container">
       <h2>Certification Candidates Kit</h2>
       <div class="section-divider"><span class="ornament"></span></div>
@@ -117,11 +106,6 @@
   </section>
 
   <section class="fade-in">
-    <div class="flower-bush bush-left" data-lottie-bunch>
-      <dotlottie-player src="https://assets-v2.lottiefiles.com/a/9832e6c6-ab0f-11ee-8510-8712bf50bcb3/3LrxvNoNVh.json" background="transparent" speed="0.5" style="width:55px;height:55px;" autoplay></dotlottie-player>
-      <dotlottie-player src="https://assets-v2.lottiefiles.com/a/b684753a-ab15-11ee-a365-af4e02a1714a/SkZNxwiAo4.json" background="transparent" speed="0.6" style="width:85px;height:85px;" autoplay></dotlottie-player>
-      <dotlottie-player src="https://assets-v2.lottiefiles.com/a/4d94e242-ad51-11ee-b32a-e31f3aabbd8f/SWUMzWkPG7.json" background="transparent" speed="0.5" style="width:70px;height:70px;" autoplay></dotlottie-player>
-    </div>
     <div class="container">
       <h2>Interpersonal Processes</h2>
       <div class="section-divider"><span class="ornament"></span></div>
@@ -200,10 +184,6 @@
       if (bar) { const h = document.documentElement.scrollHeight - window.innerHeight; bar.style.width = (window.scrollY / h * 100) + '%'; }
     });
 
-    const bunchObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => { if (entry.isIntersecting) { const bunch = entry.target; bunch.classList.add('grown'); bunch.querySelectorAll('dotlottie-player').forEach(player => { player.removeAttribute('loop'); if (player.play) player.play(); player.addEventListener('complete', () => { player.pause(); player.setSeeker(100); }, { once: true }); }); bunchObserver.unobserve(bunch); } });
-    }, { threshold: 0.2 });
-    document.querySelectorAll('[data-lottie-bunch]').forEach(bunch => { bunch.querySelectorAll('dotlottie-player').forEach(player => { player.addEventListener('ready', () => { player.pause(); }, { once: true }); }); bunchObserver.observe(bunch); });
   </script>
 
 </body>

@@ -103,11 +103,6 @@ h1, h2, h3, h4 {
   transform: translateY(0);
 }
 
-/* Flower bushes inside fade-in sections should always show */
-.fade-in > .flower-bush {
-  opacity: 1;
-  transform: none;
-}
 
 .slide-left {
   opacity: 0;
@@ -313,44 +308,28 @@ nav a + a::before {
   border-radius: var(--radius-xl);
   color: var(--navy);
   background: transparent;
-  transition: all var(--transition-smooth);
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  background-image: linear-gradient(to right, var(--navy) 50%, transparent 50%);
+  transition: all var(--transition-smooth), background-position 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   text-align: center;
   text-decoration: none;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   letter-spacing: 0.02em;
-}
-
-.btn::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--navy);
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform var(--transition-smooth);
-  z-index: -1;
-  border-radius: var(--radius-xl);
 }
 
 .btn:hover {
   color: var(--white);
   border-color: var(--navy);
-}
-
-.btn:hover::before {
-  transform: scaleX(1);
-  transform-origin: left;
+  background-position: 0 0;
 }
 
 .btn--filled {
-  background: var(--navy);
+  background-image: linear-gradient(to right, var(--teal-dark) 50%, var(--navy) 50%);
+  background-position: 100% 0;
   color: var(--white);
-}
-
-.btn--filled::before {
-  background: var(--teal-dark);
 }
 
 .btn--filled:hover {
@@ -360,10 +339,7 @@ nav a + a::before {
 .btn--cream {
   border-color: var(--white);
   color: var(--white);
-}
-
-.btn--cream::before {
-  background: var(--white);
+  background-image: linear-gradient(to right, var(--white) 50%, transparent 50%);
 }
 
 .btn--cream:hover {
@@ -373,10 +349,7 @@ nav a + a::before {
 .btn--teal {
   border-color: var(--teal);
   color: var(--teal-dark);
-}
-
-.btn--teal::before {
-  background: var(--teal);
+  background-image: linear-gradient(to right, var(--teal) 50%, transparent 50%);
 }
 
 .btn--teal:hover {
@@ -725,10 +698,6 @@ p {
   font-weight: 700;
 }
 
-.timezone-link {
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
 
 .program-content {
   display: grid;
@@ -1675,171 +1644,54 @@ footer::after {
   color: var(--teal-dark);
 }
 
-/* ===== LOTTIE FLOWER BUSHES ===== */
-.flower-bunch {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 0;
-  pointer-events: none;
-  margin: 0.5rem 0;
-  position: relative;
-  padding: 0.5rem 0;
-}
-
-/* Bush cluster */
-.flower-bush {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 0;
-  pointer-events: none;
-  margin: 0;
-  position: relative;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.05));
-}
-
-.flower-bush dotlottie-player {
-  margin-left: -18px;
+/* ===== BUTTON FLOWER HOVER ===== */
+/* Petal 1 — top-right of button */
+.btn::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 12px;
+  height: 12px;
+  background: hsl(160, 50%, 45%);
+  border-radius: 50% 50% 50% 0;
+  transform: scale(0) rotate(-45deg);
   opacity: 0;
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.flower-bush dotlottie-player:first-child {
-  margin-left: 0;
-}
-
-/* Stagger vertical positions for natural bouquet layering */
-.flower-bush dotlottie-player:nth-child(even) {
-  margin-bottom: 6px;
-}
-
-.flower-bush dotlottie-player:nth-child(3n) {
-  margin-bottom: -4px;
-}
-
-.flower-bush.grown dotlottie-player {
-  opacity: 1;
-}
-
-/* Staggered reveal for bush flowers */
-.flower-bush.grown dotlottie-player:nth-child(1) { transition-delay: 0s; }
-.flower-bush.grown dotlottie-player:nth-child(2) { transition-delay: 0.1s; }
-.flower-bush.grown dotlottie-player:nth-child(3) { transition-delay: 0.2s; }
-.flower-bush.grown dotlottie-player:nth-child(4) { transition-delay: 0.25s; }
-.flower-bush.grown dotlottie-player:nth-child(5) { transition-delay: 0.3s; }
-
-.flower-bunch.bunch-left,
-.flower-bush.bush-left {
-  justify-content: flex-start;
-  padding-left: 3rem;
-}
-
-.flower-bunch.bunch-right,
-.flower-bush.bush-right {
-  justify-content: flex-end;
-  padding-right: 3rem;
-}
-
-.flower-bunch.bunch-corner-left,
-.flower-bush.bush-corner-left {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  margin: 0;
-  padding-left: 1rem;
-  z-index: 2;
-}
-
-.flower-bunch.bunch-corner-right,
-.flower-bush.bush-corner-right {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  margin: 0;
-  padding-right: 1rem;
-  z-index: 2;
-}
-
-/* Corner top positions */
-.flower-bush.bush-corner-top-left {
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin: 0;
-  padding-left: 1rem;
-  align-items: flex-start;
-  z-index: 2;
-}
-
-.flower-bush.bush-corner-top-right {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 0;
-  padding-right: 1rem;
-  align-items: flex-start;
-  z-index: 2;
-}
-
-/* Edge vine styles */
-.vine-side-left {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 5;
   pointer-events: none;
-  z-index: 2;
-  opacity: 0;
-  transition: opacity 0.8s ease;
 }
 
-.vine-side-right {
+/* Petal 2 — top-right offset */
+.btn::after {
+  content: '';
   position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0;
+  top: -10px;
+  right: 8px;
+  width: 9px;
+  height: 9px;
+  background: hsl(140, 40%, 55%);
+  border-radius: 50% 50% 50% 0;
+  transform: scale(0) rotate(-30deg);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0.06s;
+  z-index: 5;
   pointer-events: none;
-  z-index: 2;
-  opacity: 0;
-  transition: opacity 0.8s ease;
 }
 
-.vine-side-left.grown,
-.vine-side-right.grown {
-  opacity: 1;
+/* Bloom on hover */
+.btn:hover::before {
+  transform: scale(1) rotate(-45deg);
+  opacity: 0.85;
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 8px 6px 0 -1px hsla(120, 35%, 50%, 0.5);
 }
 
-.vine-side-left dotlottie-player,
-.vine-side-right dotlottie-player {
-  margin-top: -15px;
+.btn:hover::after {
+  transform: scale(1) rotate(-30deg);
+  opacity: 0.7;
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.08s;
 }
-
-.vine-side-left dotlottie-player:first-child,
-.vine-side-right dotlottie-player:first-child {
-  margin-top: 0;
-}
-
-.flower-bunch dotlottie-player {
-  opacity: 0;
-  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.flower-bunch.grown dotlottie-player {
-  opacity: 1;
-}
-
-.flower-bunch.grown dotlottie-player:nth-child(1) { transition-delay: 0s; }
-.flower-bunch.grown dotlottie-player:nth-child(2) { transition-delay: 0.1s; }
-.flower-bunch.grown dotlottie-player:nth-child(3) { transition-delay: 0.15s; }
 
 /* Botanical border decoration */
 .botanical-border {
@@ -1866,35 +1718,6 @@ footer::after {
   right: 8%;
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(61,122,97,0.35), transparent);
-}
-
-/* Create-flower interactive Lottie */
-.create-flower-wrap {
-  display: inline-block;
-  cursor: pointer;
-  position: relative;
-  transition: transform var(--transition-smooth);
-}
-
-.create-flower-wrap:hover {
-  transform: scale(1.05);
-}
-
-.create-flower-wrap .create-flower-hint {
-  position: absolute;
-  bottom: -1.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  font-style: italic;
-  white-space: nowrap;
-  opacity: 0.7;
-  transition: opacity var(--transition-fast);
-}
-
-.create-flower-wrap:hover .create-flower-hint {
-  opacity: 1;
 }
 
 /* ===== SCROLL PROGRESS BAR ===== */
@@ -1946,14 +1769,28 @@ footer::after {
     margin: 0 auto;
   }
 
-  .footer-grid {
+  .footer-top {
     grid-template-columns: 1fr;
     text-align: center;
+    gap: 2rem;
   }
 
-  .team-photos,
-  .social-links {
+  .footer-brand {
+    align-items: center;
+  }
+
+  .footer-contact {
+    align-items: center;
+  }
+
+  .social-links,
+  .team-photos {
     justify-content: center;
+  }
+
+  .footer-mid {
+    flex-direction: column;
+    gap: 1.5rem;
   }
 }
 
@@ -1993,23 +1830,6 @@ footer::after {
 
   section {
     padding: clamp(1rem, 2.5vw, 1.5rem) 0;
-  }
-
-  .vine-side-left,
-  .vine-side-right {
-    display: none;
-  }
-
-  .flower-bush {
-    transform: scale(0.75);
-    transform-origin: center bottom;
-  }
-
-  .flower-bush.bush-corner-left,
-  .flower-bush.bush-corner-right,
-  .flower-bush.bush-corner-top-left,
-  .flower-bush.bush-corner-top-right {
-    transform: scale(0.6);
   }
 
   .logo-flourish-botanical::before,

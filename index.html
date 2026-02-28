@@ -6,7 +6,6 @@
   <title>The Empowerment Institute</title>
   <link href="https://fonts.googleapis.com/css2?family=Sorts+Mill+Goudy:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
 </head>
 <body>
 
@@ -44,11 +43,6 @@
 
   <!-- What is ET — with logo and founders side by side -->
   <section class="fade-in corner-flourish">
-    <div class="flower-bush bush-right" data-lottie-bunch>
-      <dotlottie-player src="https://assets-v2.lottiefiles.com/a/9832e6c6-ab0f-11ee-8510-8712bf50bcb3/3LrxvNoNVh.json" background="transparent" speed="0.5" style="width:55px;height:55px;" autoplay></dotlottie-player>
-      <dotlottie-player src="https://assets-v2.lottiefiles.com/a/b684753a-ab15-11ee-a365-af4e02a1714a/SkZNxwiAo4.json" background="transparent" speed="0.6" style="width:85px;height:85px;" autoplay></dotlottie-player>
-      <dotlottie-player src="https://assets-v2.lottiefiles.com/a/4d94e242-ad51-11ee-b32a-e31f3aabbd8f/SWUMzWkPG7.json" background="transparent" speed="0.5" style="width:70px;height:70px;" autoplay></dotlottie-player>
-    </div>
     <div class="container">
       <img src="images/logo-body.png" alt="Empowerment Therapy Logo" style="display:block;margin:0 auto 0.75rem;max-width:120px;">
       <h2>What is Empowerment Therapy?</h2>
@@ -78,27 +72,37 @@
       <div class="schedule-cards">
         <div class="schedule-card">
           <h3>Level 1: Foundation</h3>
-          <p class="time">Thursdays 9:00-10:30am CT</p>
+          <p class="time" id="sched-time-1">Thursdays 9:00–10:30am CT</p>
           <p class="date">Starting 8th January 2026</p>
         </div>
         <div class="schedule-card">
           <h3>Level 2: Empowerment Processes</h3>
-          <p class="time">Tuesdays 7:00-8:30pm CT</p>
+          <p class="time" id="sched-time-2">Tuesdays 7:00–8:30pm CT</p>
           <p class="date">Starting 6th January 2026</p>
         </div>
       </div>
-      <p style="text-align:center;"><a href="https://dateful.com/time-zone-converter" target="_blank" rel="noopener" style="color:var(--teal-dark);text-decoration:underline;text-underline-offset:3px;">Time Zone Converter</a></p>
-    </div>
-    <!-- Flower bouquet - bottom right corner -->
-    <div class="flower-bush bush-corner-right" data-lottie-bunch>
-      <dotlottie-player src="https://assets-v2.lottiefiles.com/a/4d94e242-ad51-11ee-b32a-e31f3aabbd8f/SWUMzWkPG7.json" background="transparent" speed="0.5" style="width:50px;height:50px;" autoplay></dotlottie-player>
-      <dotlottie-player src="https://assets-v2.lottiefiles.com/a/b684753a-ab15-11ee-a365-af4e02a1714a/SkZNxwiAo4.json" background="transparent" speed="0.6" style="width:65px;height:65px;" autoplay></dotlottie-player>
-      <dotlottie-player src="https://assets-v2.lottiefiles.com/a/9832e6c6-ab0f-11ee-8510-8712bf50bcb3/3LrxvNoNVh.json" background="transparent" speed="0.5" style="width:50px;height:50px;" autoplay></dotlottie-player>
-    </div>
-    <!-- Flower bouquet - top left -->
-    <div class="flower-bush bush-corner-top-left" data-lottie-bunch>
-      <dotlottie-player src="https://assets-v2.lottiefiles.com/a/9832e6c6-ab0f-11ee-8510-8712bf50bcb3/3LrxvNoNVh.json" background="transparent" speed="0.6" style="width:45px;height:45px;" autoplay></dotlottie-player>
-      <dotlottie-player src="https://assets-v2.lottiefiles.com/a/4d94e242-ad51-11ee-b32a-e31f3aabbd8f/SWUMzWkPG7.json" background="transparent" speed="0.5" style="width:55px;height:55px;" autoplay></dotlottie-player>
+      <script>
+      (function(){try{
+        var schedule=[
+          {id:'sched-time-1',start:'2026-01-08T15:00:00Z',end:'2026-01-08T16:30:00Z'},
+          {id:'sched-time-2',start:'2026-01-07T01:00:00Z',end:'2026-01-07T02:30:00Z'}
+        ];
+        var days=['Sundays','Mondays','Tuesdays','Wednesdays','Thursdays','Fridays','Saturdays'];
+        var tf={hour:'numeric',minute:'2-digit',hour12:true};
+        schedule.forEach(function(s){
+          var el=document.getElementById(s.id);if(!el)return;
+          var d1=new Date(s.start),d2=new Date(s.end);
+          var day=days[d1.getDay()];
+          var t1=new Intl.DateTimeFormat(undefined,tf).format(d1);
+          var t2=new Intl.DateTimeFormat(undefined,tf).format(d2);
+          var tz='';
+          new Intl.DateTimeFormat(undefined,{timeZoneName:'short'}).formatToParts(d1).forEach(function(p){
+            if(p.type==='timeZoneName')tz=p.value;
+          });
+          el.textContent=day+' '+t1+'\u2013'+t2+' '+tz;
+        });
+      }catch(e){}}());
+      </script>
     </div>
   </section>
 
@@ -120,11 +124,6 @@
 
   <!-- Program Levels — with animated tab navigation -->
   <section class="fade-in botanical-border">
-    <div class="flower-bush bush-left" data-lottie-bunch>
-      <dotlottie-player src="https://assets-v2.lottiefiles.com/a/9832e6c6-ab0f-11ee-8510-8712bf50bcb3/3LrxvNoNVh.json" background="transparent" speed="0.5" style="width:55px;height:55px;" autoplay></dotlottie-player>
-      <dotlottie-player src="https://assets-v2.lottiefiles.com/a/b684753a-ab15-11ee-a365-af4e02a1714a/SkZNxwiAo4.json" background="transparent" speed="0.6" style="width:85px;height:85px;" autoplay></dotlottie-player>
-      <dotlottie-player src="https://assets-v2.lottiefiles.com/a/4d94e242-ad51-11ee-b32a-e31f3aabbd8f/SWUMzWkPG7.json" background="transparent" speed="0.5" style="width:70px;height:70px;" autoplay></dotlottie-player>
-    </div>
     <div class="container">
       <h2>Program Levels</h2>
       <div class="section-divider"><span class="ornament"></span></div>
@@ -208,27 +207,10 @@
         </div>
       </div>
     </div>
-    <!-- Flower bouquet - bottom left corner -->
-    <div class="flower-bush bush-corner-left" data-lottie-bunch>
-      <dotlottie-player src="https://assets-v2.lottiefiles.com/a/9832e6c6-ab0f-11ee-8510-8712bf50bcb3/3LrxvNoNVh.json" background="transparent" speed="0.5" style="width:50px;height:50px;" autoplay></dotlottie-player>
-      <dotlottie-player src="https://assets-v2.lottiefiles.com/a/4d94e242-ad51-11ee-b32a-e31f3aabbd8f/SWUMzWkPG7.json" background="transparent" speed="0.6" style="width:65px;height:65px;" autoplay></dotlottie-player>
-      <dotlottie-player src="https://assets-v2.lottiefiles.com/a/b684753a-ab15-11ee-a365-af4e02a1714a/SkZNxwiAo4.json" background="transparent" speed="0.5" style="width:50px;height:50px;" autoplay></dotlottie-player>
-    </div>
-    <!-- Flower bouquet - bottom right corner -->
-    <div class="flower-bush bush-corner-right" data-lottie-bunch>
-      <dotlottie-player src="https://assets-v2.lottiefiles.com/a/b684753a-ab15-11ee-a365-af4e02a1714a/SkZNxwiAo4.json" background="transparent" speed="0.6" style="width:50px;height:50px;" autoplay></dotlottie-player>
-      <dotlottie-player src="https://assets-v2.lottiefiles.com/a/9832e6c6-ab0f-11ee-8510-8712bf50bcb3/3LrxvNoNVh.json" background="transparent" speed="0.5" style="width:65px;height:65px;" autoplay></dotlottie-player>
-      <dotlottie-player src="https://assets-v2.lottiefiles.com/a/4d94e242-ad51-11ee-b32a-e31f3aabbd8f/SWUMzWkPG7.json" background="transparent" speed="0.5" style="width:50px;height:50px;" autoplay></dotlottie-player>
-    </div>
   </section>
 
   <!-- FAQ -->
   <section class="fade-in">
-    <div class="flower-bush bush-right" data-lottie-bunch>
-      <dotlottie-player src="https://assets-v2.lottiefiles.com/a/9832e6c6-ab0f-11ee-8510-8712bf50bcb3/3LrxvNoNVh.json" background="transparent" speed="0.5" style="width:55px;height:55px;" autoplay></dotlottie-player>
-      <dotlottie-player src="https://assets-v2.lottiefiles.com/a/b684753a-ab15-11ee-a365-af4e02a1714a/SkZNxwiAo4.json" background="transparent" speed="0.6" style="width:85px;height:85px;" autoplay></dotlottie-player>
-      <dotlottie-player src="https://assets-v2.lottiefiles.com/a/4d94e242-ad51-11ee-b32a-e31f3aabbd8f/SWUMzWkPG7.json" background="transparent" speed="0.5" style="width:70px;height:70px;" autoplay></dotlottie-player>
-    </div>
     <div class="container">
       <h2>Frequently Asked Questions</h2>
       <div class="section-divider"><span class="ornament"></span></div>
@@ -369,29 +351,6 @@
       document.addEventListener('touchend', () => dragging = false);
       ba.addEventListener('click', (e) => { if (!dragging) updateBA(e.clientX); });
     }
-
-    // Lottie flower bouquets: grow on scroll, play once
-    const bunchObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const bunch = entry.target;
-          bunch.classList.add('grown');
-          bunch.querySelectorAll('dotlottie-player').forEach(player => {
-            player.removeAttribute('loop');
-            if (player.play) player.play();
-            player.addEventListener('complete', () => { player.pause(); player.setSeeker(100); }, { once: true });
-          });
-          bunchObserver.unobserve(bunch);
-        }
-      });
-    }, { threshold: 0.2 });
-
-    document.querySelectorAll('[data-lottie-bunch]').forEach(bunch => {
-      bunch.querySelectorAll('dotlottie-player').forEach(player => {
-        player.addEventListener('ready', () => { player.pause(); }, { once: true });
-      });
-      bunchObserver.observe(bunch);
-    });
 
   </script>
 
