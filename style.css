@@ -387,6 +387,114 @@ nav a + a::before {
   height: 56px; /* matches fixed header height */
 }
 
+/* ===== HERO COLLAGE SECTION ===== */
+.hero-collage-section {
+  padding: 0 !important;
+  background: #e4e4e4 !important;
+  overflow: hidden;
+}
+.hero-collage-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+.collage-container {
+  --coll-size: 150;
+  --unit: calc((var(--coll-size) / 1366) * 1vmin);
+  position: relative;
+  min-width: calc(1366 * var(--unit));
+  height: calc(768 * var(--unit));
+  margin: 0 auto;
+}
+#collage { width: 100%; height: 100%; position: relative; }
+
+/* FOUC prevention — hide until GSAP sets initial states */
+#collage img, .top-branch-container { visibility: hidden; }
+.hero-collage-ready #collage img,
+.hero-collage-ready .top-branch-container { visibility: visible; }
+
+/* Feathers */
+#feather_1 { position: absolute; top: 19%; left: 35%; width: calc(100 * var(--unit)); }
+#feather_2 { position: absolute; top: 62%; left: 24.5%; width: calc(208 * var(--unit)); }
+#feather_3 { position: absolute; top: 22%; left: 22.5%; width: calc(208 * var(--unit)); }
+#feather_4 { position: absolute; top: 63%; left: 20.5%; width: calc(208 * var(--unit)); }
+#feather_5 { position: absolute; top: 16%; left: 30.5%; width: calc(150 * var(--unit)); }
+
+/* Bird */
+#bird { position: absolute; top: 24.5%; left: 38.4%; width: calc(590 * var(--unit)); }
+
+/* Left side */
+#left-branch { position: absolute; top: 41.5%; left: 16.5%; width: calc(350 * var(--unit)); }
+#left-pine { position: absolute; top: 30.5%; left: 11.5%; width: calc(520 * var(--unit)); }
+
+/* Middle branch */
+#center-branch {
+  position: absolute; top: 26%; left: 35.5%; width: calc(140 * var(--unit));
+  transform-origin: 90% bottom; transform: rotate(20deg);
+}
+#center-branch-big { position: absolute; top: 31%; left: 41%; width: calc(300 * var(--unit)); }
+
+/* Red berries */
+#red_mi { position: absolute; top: 57%; left: 48%; width: calc(160 * var(--unit)); }
+
+/* Middle leaves */
+#leaf_1 { position: absolute; top: 40.5%; left: 31.5%; width: calc(220 * var(--unit)); }
+#leaf_2 { position: absolute; top: 62.5%; left: 41.5%; width: calc(160 * var(--unit)); }
+#leaf_3 { position: absolute; top: 50%; left: 40%; width: calc(260 * var(--unit)); }
+#leaf_4 { position: absolute; top: 56%; left: 35%; width: calc(180 * var(--unit)); }
+
+/* Right side */
+#right-pine-big { position: absolute; top: 22.5%; left: 49.5%; width: calc(400 * var(--unit)); }
+#right-pine-small { position: absolute; top: 54.5%; left: 63.5%; width: calc(210 * var(--unit)); }
+
+/* Top branch group */
+.top-branch-container {
+  position: absolute; width: calc(540 * var(--unit)); height: calc(200 * var(--unit));
+  top: 4.5%; left: 34.5%;
+}
+#top-branch-branch { position: absolute; width: calc(540 * var(--unit)); }
+#top-branch-cover {
+  position: absolute; width: 100%; height: 100%; background: #e4e4e4;
+}
+#top-branch-f1 { position: absolute; top: 17.5%; left: 50.5%; width: calc(60 * var(--unit)); }
+#top-branch-f2 { position: absolute; top: 19.5%; left: 58.5%; width: calc(73 * var(--unit)); }
+#top-branch-f3 { position: absolute; top: 22.5%; left: 62.1%; width: calc(73 * var(--unit)); }
+
+/* Title / Letter container */
+#letter-container {
+  position: absolute; top: 50%; left: 50%; width: 100%; text-align: center;
+  transform: translate(-50%, -50%); z-index: 10;
+}
+#letter {
+  width: 100%;
+  color: #fffbf2;
+  font-weight: bold;
+  font-size: calc(86 * var(--unit));
+  font-family: var(--font-heading);
+  -webkit-text-stroke: calc(4 * var(--unit)) hsl(30, 8%, 22%);
+  paint-order: stroke fill;
+  margin: 0;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+#letter .char, #letter .char-space { display: inline-block; }
+
+/* Hero text below the collage */
+.hero-text-content {
+  background: #ffffff;
+  padding-top: clamp(1rem, 2vw, 1.5rem);
+  padding-bottom: clamp(1.25rem, 3vw, 2.25rem);
+}
+
+@media (max-width: 768px) {
+  .collage-container { --coll-size: 110; }
+  #letter { font-size: calc(85 * var(--unit)); }
+}
+@media (max-width: 480px) {
+  .collage-container { --coll-size: 80; }
+  #letter { font-size: calc(70 * var(--unit)); }
+}
+
 /* ===== PAGE SECTIONS ===== */
 section {
   padding: clamp(1.25rem, 3vw, 2.25rem) 0;
@@ -1453,11 +1561,13 @@ footer::after {
 
 .typewriter-text .cursor {
   display: inline-block;
-  width: 2px;
-  height: 1em;
+  width: 1.5px;
+  height: 0.92em;
   background: var(--teal);
-  margin-left: 2px;
-  vertical-align: text-bottom;
+  margin-left: 1px;
+  vertical-align: baseline;
+  position: relative;
+  top: 0.02em;
   animation: blink 0.8s step-end infinite;
 }
 

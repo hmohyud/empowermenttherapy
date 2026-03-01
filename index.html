@@ -31,10 +31,51 @@
 
   <div class="page-spacer"></div>
 
-  <!-- Intro with typewriter + shimmer -->
-  <section class="fade-in">
-    <div class="container">
-      <h1>Empowerment Therapy Institute</h1>
+  <!-- Hero: Botanical Collage -->
+  <section class="hero-collage-section" id="heroCollageSection">
+    <div class="hero-collage-wrapper">
+      <div class="collage-container">
+        <div id="collage">
+          <!-- top -->
+          <img id="top-branch-f1" src="https://i.postimg.cc/y8F2yG3P/top-branch-f1.png" alt="">
+          <div id="top-branch" class="top-branch-container">
+            <img id="top-branch-branch" src="https://i.postimg.cc/xTNwc80B/top-branch-branch.png" alt="">
+            <div id="top-branch-cover"></div>
+          </div>
+          <img id="top-branch-f2" src="https://i.postimg.cc/K8XdLbjj/top-branch-f2.png" alt="">
+          <img id="top-branch-f3" src="https://i.postimg.cc/MG54hjDf/top-branch-f3.png" alt="">
+          <!-- feathers -->
+          <img id="feather_2" src="https://i.postimg.cc/T1svBWTJ/feather-2.png" alt="">
+          <img id="feather_3" src="https://i.postimg.cc/qqqdmGH7/feather-3.png" alt="">
+          <img id="feather_4" src="https://i.postimg.cc/4dBgbSMM/feather-4.png" alt="">
+          <img id="feather_5" src="https://i.postimg.cc/sDBr7KJ6/feather-5.png" alt="">
+          <img id="feather_1" src="https://i.postimg.cc/3rfhkz20/feather-1.png" alt="">
+          <!-- bird -->
+          <img id="bird" src="https://i.postimg.cc/brsK0N1D/bird.png" alt="">
+          <!-- left side -->
+          <img id="left-branch" src="https://i.postimg.cc/QxRrb54X/left-branch.png" alt="">
+          <img id="left-pine" src="https://i.postimg.cc/W4VcRVcC/left-pine.png" alt="">
+          <!-- middle -->
+          <img id="red_mi" src="https://i.postimg.cc/C1v3ffnp/red-mi.png" alt="">
+          <!-- middle leaves -->
+          <img id="leaf_1" src="https://i.postimg.cc/zv64xZkd/leaf-1.png" alt="">
+          <img id="leaf_2" src="https://i.postimg.cc/jjh0t1s5/leaf-2.png" alt="">
+          <img id="leaf_3" src="https://i.postimg.cc/440CfVTz/leaf-3.png" alt="">
+          <img id="leaf_4" src="https://i.postimg.cc/rmpbcFnn/leaf-4.png" alt="">
+          <!-- middle branch -->
+          <img id="center-branch" src="https://i.postimg.cc/G2h02j2j/center-branch.png" alt="">
+          <img id="center-branch-big" src="https://i.postimg.cc/GpdV7jk1/center-branch-big.png" alt="">
+          <!-- right side -->
+          <img id="right-pine-big" src="https://i.postimg.cc/vBSKmFCQ/right-pine-big.png" alt="">
+          <img id="right-pine-small" src="https://i.postimg.cc/0yD1HQF7/right-pine-small.png" alt="">
+          <!-- title -->
+          <div id="letter-container">
+            <h1 id="letter">Empowerment Therapy Institute</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container hero-text-content">
       <div class="typewriter-text text-shimmer" id="typewriter"></div>
       <div class="section-divider"><span class="ornament"></span></div>
       <p style="max-width:800px;margin-left:auto;margin-right:auto;text-align:center;">Empowerment Therapy is for those of us who want to accompany others on the journey towards equilibrium, wholeness, and connection with their authentic self. It supports us in helping our clients identify, trust, and endeavor to meet their needs because when our needs are met, we thrive!</p>
@@ -286,6 +327,109 @@
     </div>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+  // ===== BOTANICAL COLLAGE HERO ANIMATION =====
+  (function(){
+    // Manual SplitText replacement
+    function splitChars(id){
+      var el=document.getElementById(id); if(!el) return [];
+      var txt=el.textContent; el.textContent=''; var chars=[];
+      for(var i=0;i<txt.length;i++){
+        var s=document.createElement('span');
+        if(txt[i]===' '){ s.className='char-space'; s.innerHTML='&nbsp;'; }
+        else { s.className='char'; s.textContent=txt[i]; }
+        el.appendChild(s); chars.push(s);
+      }
+      return chars;
+    }
+
+    gsap.defaults({ease:"back.out(1.4)"});
+
+    // Helper: set initial state
+    function setScaleZero(sel,ox,oy,rot){
+      gsap.set(sel,{transformOrigin:ox+'% '+oy+'%',scale:0,rotate:rot});
+    }
+
+    // Right pine
+    setScaleZero('#right-pine-big',0,90,30);
+    gsap.set('#right-pine-small',{transformOrigin:'0% 40%',scale:0,rotate:40,x:-50,y:10});
+    // Center branch
+    setScaleZero('#center-branch',90,100,20);
+    setScaleZero('#center-branch-big',20,95,-50);
+    // Feathers
+    setScaleZero('#feather_2',120,0,-60);
+    setScaleZero('#feather_4',140,50,-70);
+    setScaleZero('#feather_3',120,140,-100);
+    setScaleZero('#feather_5',80,120,-110);
+    setScaleZero('#feather_1',70,100,-100);
+    // Bird
+    setScaleZero('#bird',20,100,-100);
+    // Left branches
+    setScaleZero('#left-branch',100,90,-100);
+    setScaleZero('#left-pine',70,120,-100);
+    // Red berries
+    setScaleZero('#red_mi',0,50,-150);
+    // Leaves
+    setScaleZero('#leaf_1',90,80,-60);
+    setScaleZero('#leaf_2',30,10,-50);
+    setScaleZero('#leaf_3',20,80,-40);
+    setScaleZero('#leaf_4',70,10,-50);
+    // Top branch
+    setScaleZero('#top-branch-f1',100,60,30);
+    setScaleZero('#top-branch-f2',50,70,30);
+    setScaleZero('#top-branch-f3',70,25,-30);
+
+    // Split title into chars
+    var titleChars=splitChars('letter');
+    gsap.set(titleChars,{opacity:0,y:25});
+
+    // Mark ready (makes elements visible after GSAP sets scale:0)
+    document.getElementById('heroCollageSection').classList.add('hero-collage-ready');
+
+    // Build timeline
+    var tl=gsap.timeline({paused:true});
+    tl.to('#center-branch',{scale:1,rotate:15,duration:1.7},0)
+      .to('#leaf_1',{scale:1,rotate:0,duration:1.1},0.1)
+      .to('#leaf_2',{scale:1,rotate:0,duration:1.3},0.2)
+      .to('#leaf_3',{scale:1,rotate:0,duration:1.3},0.1)
+      .to('#leaf_4',{scale:1,rotate:0,duration:1.2},0.1)
+      .to('#feather_2',{scale:1,rotate:0,duration:1.2},0.2)
+      .to('#feather_4',{scale:1,rotate:0,duration:1.4},0.4)
+      .to('#feather_3',{scale:1,rotate:0,duration:1.2},0.3)
+      .to('#feather_5',{scale:1,rotate:0,duration:1.2},0.4)
+      .to('#feather_1',{scale:1,rotate:0,duration:1.3},0.4)
+      .to('#red_mi',{scale:1,rotate:0,duration:1.9},0.6)
+      .to('#left-branch',{scale:1,rotate:0,duration:1.5},0.5)
+      .to('#left-pine',{scale:1,rotate:0,duration:1.3},0.4)
+      .to('#center-branch-big',{scale:1,rotate:0,duration:1.3},0.4)
+      .to('#right-pine-big',{scale:1,rotate:0,duration:1.3},0.5)
+      .to('#right-pine-small',{scale:1,rotate:0,x:0,y:0,duration:1.1},0.85)
+      .to('#bird',{scale:1,rotate:0,duration:1.6},0.5)
+      .to('#top-branch-cover',{scaleX:0,transformOrigin:'left',duration:2},0.5)
+      .to('#top-branch-f3',{scale:1,rotate:0,duration:1.5},0.9)
+      .to('#top-branch-f2',{scale:1,rotate:0,duration:1.7},1.2)
+      .to('#top-branch-f1',{scale:1,rotate:0,duration:1.7},1.4)
+      .to(titleChars,{duration:0.8,opacity:1,y:0,stagger:{each:0.04}},0.5);
+
+    // Auto-play: start after 1s when tab is visible
+    function startCollageAnimation(){
+      setTimeout(function(){ tl.play(); }, 1000);
+    }
+    if(document.hidden){
+      // Tab loaded in background — wait until it becomes visible
+      document.addEventListener('visibilitychange', function onVisible(){
+        if(!document.hidden){
+          document.removeEventListener('visibilitychange', onVisible);
+          startCollageAnimation();
+        }
+      });
+    } else {
+      startCollageAnimation();
+    }
+  })();
+  </script>
+
   <script>
     // Intersection Observer for all animation classes
     const observer = new IntersectionObserver((entries) => {
@@ -326,7 +470,7 @@
         setTimeout(type, 55);
       }
     }
-    setTimeout(type, 800);
+    setTimeout(type, 2500);
 
     // Animated Tabs
     document.querySelectorAll('#levelTabs .tab-btn').forEach(btn => {
