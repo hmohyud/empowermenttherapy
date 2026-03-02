@@ -399,7 +399,7 @@ nav a + a::before {
   overflow: hidden;
 }
 .collage-container {
-  --coll-size: 150;
+  --coll-size: 118;
   --unit: calc((var(--coll-size) / 1366) * 1vmin);
   position: relative;
   min-width: calc(1366 * var(--unit));
@@ -486,13 +486,34 @@ nav a + a::before {
   padding-bottom: clamp(1.25rem, 3vw, 2.25rem);
 }
 
+@media (max-width: 1100px) {
+  .collage-container { --coll-size: 95; }
+  #letter { font-size: calc(78 * var(--unit)); }
+}
 @media (max-width: 768px) {
-  .collage-container { --coll-size: 110; }
-  #letter { font-size: calc(85 * var(--unit)); }
+  .collage-container { --coll-size: 80; }
+  #letter-container { top: 55%; }
+  #letter {
+    font-size: max(calc(72 * var(--unit)), 7.5vw);
+    white-space: normal;
+    line-height: 1.1;
+    -webkit-text-stroke: max(calc(4 * var(--unit)), 2px) hsl(30, 8%, 22%);
+  }
+  /* Stack each word on its own line */
+  #letter .char-space {
+    display: block;
+    height: 0;
+    overflow: hidden;
+  }
 }
 @media (max-width: 480px) {
-  .collage-container { --coll-size: 80; }
-  #letter { font-size: calc(70 * var(--unit)); }
+  .collage-container { --coll-size: 65; }
+  #letter {
+    font-size: max(calc(65 * var(--unit)), 10vw);
+    white-space: normal;
+    line-height: 1.1;
+    -webkit-text-stroke: max(calc(4 * var(--unit)), 1.5px) hsl(30, 8%, 22%);
+  }
 }
 
 /* ===== PAGE SECTIONS ===== */
