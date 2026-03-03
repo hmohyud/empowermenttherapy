@@ -1,3 +1,87 @@
+/* ===== PAGE LOADER ===== */
+.page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #fffdf7, #fdf8f0);
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.page-loader.loaded {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.8rem;
+}
+
+/* Blooming flower spinner */
+.loader-bloom {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  animation: loader-spin 3s linear infinite;
+}
+
+.loader-petal {
+  position: absolute;
+  width: 14px;
+  height: 24px;
+  background: var(--coral, hsl(12, 76%, 62%));
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  left: 50%;
+  top: 50%;
+  transform-origin: center bottom;
+  opacity: 0.85;
+}
+
+.loader-petal:nth-child(1) { transform: translate(-50%, -100%) rotate(0deg); background: hsl(12, 76%, 62%); }
+.loader-petal:nth-child(2) { transform: translate(-50%, -100%) rotate(60deg); background: hsl(28, 85%, 72%); }
+.loader-petal:nth-child(3) { transform: translate(-50%, -100%) rotate(120deg); background: hsl(42, 78%, 55%); }
+.loader-petal:nth-child(4) { transform: translate(-50%, -100%) rotate(180deg); background: hsl(162, 63%, 38%); }
+.loader-petal:nth-child(5) { transform: translate(-50%, -100%) rotate(240deg); background: hsl(162, 45%, 55%); }
+.loader-petal:nth-child(6) { transform: translate(-50%, -100%) rotate(300deg); background: hsl(350, 50%, 80%); }
+
+.loader-core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  background: hsl(42, 78%, 55%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 8px hsla(42, 78%, 55%, 0.4);
+}
+
+@keyframes loader-spin {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.08); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+.loader-text {
+  font-family: 'Sorts Mill Goudy', Georgia, serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: hsl(200, 35%, 17%);
+  letter-spacing: 0.04em;
+  opacity: 0.6;
+  animation: loader-text-pulse 2s ease-in-out infinite;
+}
+
+@keyframes loader-text-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
 /* ===== RESET & VARIABLES ===== */
 *, *::before, *::after {
   margin: 0;
@@ -6,25 +90,30 @@
 }
 
 :root {
-  /* Clean & Modern White — minimal, professional */
-  --cream: #ffffff;
-  --cream-dark: #e8e8e8;
-  --teal: hsl(160, 40%, 38%);
-  --teal-light: hsl(160, 25%, 92%);
-  --teal-dark: hsl(160, 45%, 25%);
-  --navy: hsl(220, 20%, 20%);
-  --navy-light: hsl(220, 15%, 40%);
-  --light-yellow: #f8f8f6;
-  --sage: hsl(160, 15%, 55%);
-  --rose: hsl(160, 20%, 65%);
-  --rose-light: #f5f7f6;
+  /* Fresh & Lively — vibrant teal + coral accents */
+  --cream: #fffdf7;
+  --cream-dark: #ede9e3;
+  --teal: hsl(162, 63%, 38%);
+  --teal-light: hsl(162, 45%, 93%);
+  --teal-dark: hsl(165, 65%, 22%);
+  --coral: hsl(12, 76%, 62%);
+  --coral-light: hsl(14, 80%, 95%);
+  --peach: hsl(28, 85%, 72%);
+  --blush: hsl(350, 50%, 80%);
+  --gold: hsl(42, 78%, 55%);
+  --navy: hsl(200, 35%, 17%);
+  --navy-light: hsl(200, 20%, 38%);
+  --light-yellow: #fdf8f0;
+  --sage: hsl(155, 22%, 55%);
+  --rose: hsl(8, 55%, 72%);
+  --rose-light: hsl(10, 45%, 96%);
   --white: #ffffff;
-  --text-dark: hsl(220, 15%, 15%);
-  --text-muted: hsl(220, 8%, 50%);
+  --text-dark: hsl(210, 18%, 14%);
+  --text-muted: hsl(210, 10%, 45%);
   --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
   --shadow-md: 0 4px 14px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.04);
   --shadow-lg: 0 10px 30px rgba(0,0,0,0.1), 0 4px 10px rgba(0,0,0,0.04);
-  --shadow-glow: 0 0 30px rgba(61,122,97,0.15);
+  --shadow-glow: 0 0 30px hsla(12, 76%, 62%, 0.15);
   --radius-sm: 6px;
   --radius-md: 12px;
   --radius-lg: 20px;
@@ -45,12 +134,12 @@ html {
 
 /* Text selection color */
 ::selection {
-  background: hsl(160, 30%, 85%);
+  background: hsl(12, 60%, 90%);
   color: var(--navy);
 }
 
 ::-moz-selection {
-  background: hsl(160, 30%, 85%);
+  background: hsl(12, 60%, 90%);
   color: var(--navy);
 }
 
@@ -203,14 +292,14 @@ header .container {
 }
 
 .logo:hover img {
-  filter: drop-shadow(0 2px 8px rgba(61,122,97,0.25));
+  filter: drop-shadow(0 2px 8px hsla(12, 76%, 62%, 0.3));
   animation-play-state: paused;
   transform: scale(1.05);
 }
 
 @keyframes logo-breathe {
   0%, 100% { transform: scale(1); filter: drop-shadow(0 0 0px transparent); }
-  50% { transform: scale(1.04); filter: drop-shadow(0 1px 6px rgba(61,122,97,0.15)); }
+  50% { transform: scale(1.04); filter: drop-shadow(0 1px 6px hsla(12, 76%, 62%, 0.2)); }
 }
 
 /* ===== LOGO FLOURISH ===== */
@@ -275,13 +364,13 @@ nav a {
 
 nav a:hover {
   color: var(--teal-dark);
-  border-bottom-color: rgba(61,122,97,0.3);
+  border-bottom-color: var(--coral);
 }
 
 nav a.active {
   color: var(--teal-dark);
   font-weight: 400;
-  border-bottom: 2px solid var(--teal);
+  border-bottom: 2px solid var(--coral);
   transition: color var(--transition-smooth), border-color var(--transition-smooth);
 }
 
@@ -304,13 +393,13 @@ nav a + a::before {
   padding: 0.75rem 2rem;
   font-size: 0.95rem;
   font-family: var(--font-body);
-  border: 1.5px solid var(--navy);
+  border: 1.5px solid var(--coral);
   border-radius: var(--radius-xl);
-  color: var(--navy);
+  color: var(--coral);
   background: transparent;
   background-size: 200% 100%;
   background-position: 100% 0;
-  background-image: linear-gradient(to right, var(--navy) 50%, transparent 50%);
+  background-image: linear-gradient(to right, var(--coral) 50%, transparent 50%);
   transition: all var(--transition-smooth), background-position 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   text-align: center;
@@ -322,18 +411,19 @@ nav a + a::before {
 
 .btn:hover {
   color: var(--white);
-  border-color: var(--navy);
+  border-color: var(--coral);
   background-position: 0 0;
 }
 
 .btn--filled {
-  background-image: linear-gradient(to right, var(--teal-dark) 50%, var(--navy) 50%);
+  background-image: linear-gradient(to right, var(--teal) 50%, var(--coral) 50%);
   background-position: 100% 0;
   color: var(--white);
+  border-color: var(--coral);
 }
 
 .btn--filled:hover {
-  border-color: var(--teal-dark);
+  border-color: var(--teal);
 }
 
 .btn--cream {
@@ -395,8 +485,63 @@ nav a + a::before {
   min-height: 450px;
   max-height: 850px;
   overflow: hidden;
-  /* Fallback while canvas loads — matches the renderer setClearColor (0x7a9e8e) */
-  background: #7a9e8e;
+  /* Fallback while canvas loads — matches the renderer setClearColor (0x8abcd4) */
+  background: #8abcd4;
+}
+
+/* God rays — soft diagonal light beams filtering through clouds */
+.hero-clouds-section::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  left: -10%;
+  width: 120%;
+  height: 140%;
+  z-index: 1;
+  pointer-events: none;
+  background: conic-gradient(
+    from 200deg at 30% 10%,
+    transparent 0deg,
+    hsla(48, 80%, 92%, 0.12) 4deg,
+    transparent 9deg,
+    transparent 22deg,
+    hsla(48, 70%, 90%, 0.08) 26deg,
+    transparent 30deg,
+    transparent 40deg,
+    hsla(48, 80%, 92%, 0.10) 43deg,
+    transparent 47deg,
+    transparent 55deg,
+    hsla(48, 70%, 90%, 0.06) 58deg,
+    transparent 62deg,
+    transparent 75deg,
+    hsla(48, 80%, 92%, 0.09) 78deg,
+    transparent 82deg,
+    transparent 360deg
+  );
+  animation: rays-drift 20s ease-in-out infinite;
+}
+
+/* Warm ambient wash — very subtle golden-hour warmth at the horizon */
+.hero-clouds-section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    hsla(28, 60%, 82%, 0.12) 0%,
+    hsla(42, 50%, 85%, 0.06) 40%,
+    transparent 100%
+  );
+}
+
+@keyframes rays-drift {
+  0%, 100% { transform: rotate(0deg); opacity: 0.7; }
+  50% { transform: rotate(3deg); opacity: 1; }
 }
 
 #cloudCanvas {
@@ -421,9 +566,9 @@ nav a + a::before {
   /* Soft radial vignette behind the text for contrast */
   background: radial-gradient(
     ellipse 70% 50% at 50% 50%,
-    rgba(30, 50, 40, 0.45) 0%,
-    rgba(30, 50, 40, 0.2) 50%,
-    transparent 80%
+    rgba(25, 45, 40, 0.42) 0%,
+    rgba(25, 45, 40, 0.18) 50%,
+    transparent 75%
   );
 }
 
@@ -511,24 +656,67 @@ nav a + a::before {
   overflow: hidden;
 }
 
-/* Standalone botanical interlude — dedicated visual section */
-.botanical-interlude {
+/* ===== TRANSFORMATION LAYOUT — collage behind text ===== */
+#transformationSection {
+  overflow: visible;
+}
+
+.transformation-header {
   position: relative;
-  overflow: hidden;
-  height: clamp(350px, 50vw, 550px);
-  background: linear-gradient(
-    180deg,
-    #ffffff 0%,
-    hsl(45, 30%, 95%) 15%,
-    hsl(40, 25%, 92%) 50%,
-    hsl(45, 30%, 95%) 85%,
-    #ffffff 100%
-  );
+  margin-bottom: 0.6rem;
+  min-height: 120px;
+}
+
+.transformation-text {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.transformation-text .section-divider {
+  margin-bottom: 0;
+}
+
+.transformation-collage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: 0;
+  padding-bottom: 40%;
+  transform: translate(-70%, -55%);
+  background: transparent;
+  z-index: 1;
+  pointer-events: none;
+  overflow: visible;
+  opacity: 0.55;
+}
+
+.transformation-text h2,
+.transformation-text .subtitle,
+.transformation-text .section-divider {
+  text-shadow: 0 0 12px rgba(255,255,255,0.9), 0 0 25px rgba(255,255,255,0.7);
+}
+
+.transformation-collage .collage-container {
+  --coll-size: 38;
+}
+
+.transformation-collage .collage-bg-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
 }
 
 .collage-host-section {
   position: relative;
-  overflow: hidden;
 }
 
 /* Feathers */
@@ -664,12 +852,15 @@ section {
 }
 
 /* Alternate section backgrounds for visual rhythm */
-section:nth-of-type(even):not(.living-bg) {
-  background: #fafbfa;
+section:nth-of-type(4n+2):not(.living-bg) {
+  background: var(--coral-light);
+}
+section:nth-of-type(4n+4):not(.living-bg) {
+  background: var(--teal-light);
 }
 
 .section-teal {
-  background: linear-gradient(135deg, var(--teal-light) 0%, hsl(160, 25%, 90%) 100%);
+  background: linear-gradient(135deg, var(--teal-light) 0%, hsl(162, 35%, 88%) 100%);
   color: var(--navy);
 }
 
@@ -711,7 +902,7 @@ section:nth-of-type(even):not(.living-bg) {
 }
 
 .section-divider::before {
-  background: linear-gradient(90deg, transparent, var(--teal));
+  background: linear-gradient(90deg, transparent, var(--coral));
 }
 
 .section-divider::after {
@@ -729,7 +920,8 @@ section:nth-of-type(even):not(.living-bg) {
   content: '';
   width: 8px;
   height: 8px;
-  border: 1.5px solid var(--teal);
+  border: 1.5px solid var(--gold);
+  background: var(--gold);
   transform: rotate(45deg);
   border-radius: 1px;
   transition: background var(--transition-smooth);
@@ -743,7 +935,7 @@ section:nth-of-type(even):not(.living-bg) {
   width: auto;
   height: auto;
   font-size: 1.2rem;
-  color: var(--teal);
+  color: var(--gold);
   line-height: 1;
 }
 
@@ -766,7 +958,7 @@ section:nth-of-type(even):not(.living-bg) {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: var(--teal);
+  background: var(--gold);
   border: none;
   transform: none;
 }
@@ -795,7 +987,7 @@ section:nth-of-type(even):not(.living-bg) {
   left: 15%;
   right: 15%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(61,122,97,0.25), rgba(61,122,97,0.4), rgba(61,122,97,0.25), transparent);
+  background: linear-gradient(90deg, transparent, hsla(12, 76%, 62%, 0.2), hsla(42, 78%, 55%, 0.35), hsla(162, 63%, 38%, 0.2), transparent);
 }
 
 /* Vine edge decorations for section borders */
@@ -810,7 +1002,7 @@ section:nth-of-type(even):not(.living-bg) {
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent 0%, var(--teal-light) 20%, var(--teal) 35%, var(--sage) 50%, var(--teal) 65%, var(--teal-light) 80%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, var(--teal-light) 15%, var(--teal) 30%, var(--gold) 50%, var(--coral) 70%, var(--coral-light) 85%, transparent 100%);
   opacity: 0.5;
 }
 
@@ -821,7 +1013,7 @@ section:nth-of-type(even):not(.living-bg) {
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent 0%, var(--teal-light) 20%, var(--teal) 35%, var(--sage) 50%, var(--teal) 65%, var(--teal-light) 80%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, var(--coral-light) 15%, var(--coral) 30%, var(--gold) 50%, var(--teal) 70%, var(--teal-light) 85%, transparent 100%);
   opacity: 0.35;
 }
 
@@ -835,8 +1027,8 @@ section:nth-of-type(even):not(.living-bg) {
   content: '\2767';
   position: absolute;
   font-size: 1.3rem;
-  color: var(--teal);
-  opacity: 0.2;
+  color: var(--coral);
+  opacity: 0.25;
   line-height: 1;
 }
 
@@ -947,7 +1139,7 @@ p {
 .schedule-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-lg);
-  border-color: rgba(61,122,97,0.2);
+  border-color: var(--coral);
 }
 
 .schedule-card h3 {
@@ -988,12 +1180,12 @@ p {
 }
 
 .highlight-box {
-  background: linear-gradient(135deg, hsl(160, 25%, 95%), hsl(160, 15%, 97%));
+  background: linear-gradient(135deg, hsl(28, 60%, 96%), hsl(42, 50%, 96%));
   padding: 1.25rem 1.75rem;
   border-radius: var(--radius-lg);
   text-align: center;
   margin-top: 0.75rem;
-  border: 1px solid rgba(61,122,97,0.12);
+  border: 1px solid hsla(28, 85%, 72%, 0.18);
   box-shadow: var(--shadow-sm);
 }
 
@@ -1029,7 +1221,7 @@ p {
 .level-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-lg);
-  border-color: rgba(61,122,97,0.15);
+  border-color: var(--teal);
 }
 
 .level-card img {
@@ -1078,8 +1270,8 @@ p {
 
 .testimonial-card:hover {
   transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
-  border-color: rgba(61,122,97,0.15);
+  box-shadow: 0 10px 30px hsla(12, 76%, 62%, 0.12), var(--shadow-lg);
+  border-color: var(--coral);
 }
 
 .testimonial-card img {
@@ -1088,7 +1280,7 @@ p {
   border-radius: 50%;
   object-fit: cover;
   margin: 0 auto 1rem;
-  border: 3px solid var(--teal);
+  border: 3px solid var(--coral);
   box-shadow: var(--shadow-sm);
   transition: transform var(--transition-smooth);
 }
@@ -1137,10 +1329,10 @@ p {
 }
 
 .faq details[open] {
-  background: #f8faf9;
+  background: var(--coral-light);
   box-shadow: var(--shadow-sm);
   border-bottom-color: transparent;
-  border-left-color: var(--teal);
+  border-left-color: var(--coral);
 }
 
 .faq summary {
@@ -1159,7 +1351,7 @@ p {
 }
 
 .faq summary:hover {
-  background: rgba(61,122,97,0.06);
+  background: hsla(12, 76%, 62%, 0.06);
 }
 
 .faq summary::-webkit-details-marker { display: none; }
@@ -1182,7 +1374,7 @@ p {
 
 .faq details[open] summary::after {
   transform: rotate(45deg);
-  background: var(--teal);
+  background: var(--coral);
   color: var(--white);
 }
 
@@ -1199,7 +1391,7 @@ p {
 
 /* ===== BLOCKQUOTE ===== */
 blockquote {
-  background: linear-gradient(135deg, #f9faf9, #f5f7f6);
+  background: linear-gradient(135deg, #fdf8f0, #faf5f2);
   padding: 1.75rem 2.25rem 1.5rem;
   border-radius: var(--radius-lg);
   font-style: italic;
@@ -1208,7 +1400,7 @@ blockquote {
   text-align: center;
   max-width: 700px;
   margin: 0 auto;
-  border-left: 3px solid var(--teal);
+  border-left: 3px solid var(--coral);
   box-shadow: var(--shadow-sm);
   position: relative;
   color: var(--navy);
@@ -1220,8 +1412,8 @@ blockquote::before {
   top: -4px;
   left: 20px;
   font-size: 4.5rem;
-  color: var(--teal);
-  opacity: 0.15;
+  color: var(--coral);
+  opacity: 0.18;
   font-family: Georgia, serif;
   line-height: 1;
 }
@@ -1252,7 +1444,7 @@ blockquote::before {
 .team-member img:hover {
   transform: scale(1.02);
   box-shadow: var(--shadow-lg);
-  border-color: rgba(61,122,97,0.15);
+  border-color: var(--coral);
 }
 
 .team-member h3 {
@@ -1302,7 +1494,7 @@ blockquote::before {
 .resource-list li:hover {
   background: var(--white);
   box-shadow: var(--shadow-sm);
-  border-left-color: var(--teal);
+  border-left-color: var(--coral);
   transform: translateX(4px);
 }
 
@@ -1409,7 +1601,7 @@ blockquote::before {
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 0.4rem;
-  border: 2.5px solid var(--teal);
+  border: 2.5px solid var(--coral);
   box-shadow: var(--shadow-sm);
   transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
 }
@@ -1465,8 +1657,8 @@ blockquote::before {
 .contact-form input:focus,
 .contact-form textarea:focus {
   outline: none;
-  border-color: var(--teal);
-  box-shadow: 0 0 0 3px rgba(61,122,97,0.12);
+  border-color: var(--coral);
+  box-shadow: 0 0 0 3px hsla(12, 76%, 62%, 0.12);
 }
 
 .contact-form textarea {
@@ -1481,7 +1673,7 @@ blockquote::before {
 
 /* ===== FOOTER ===== */
 footer {
-  background: linear-gradient(160deg, hsl(160, 22%, 16%) 0%, hsl(200, 20%, 14%) 50%, hsl(220, 20%, 16%) 100%);
+  background: linear-gradient(160deg, hsl(165, 30%, 14%) 0%, hsl(200, 28%, 13%) 50%, hsl(220, 22%, 15%) 100%);
   color: var(--white);
   padding: 0;
   position: relative;
@@ -1494,7 +1686,7 @@ footer::before {
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent, hsl(160, 40%, 38%), hsl(160, 15%, 55%), hsl(160, 40%, 38%), transparent);
+  background: linear-gradient(90deg, transparent, var(--coral), var(--gold), var(--teal), transparent);
   z-index: 1;
 }
 
@@ -1556,8 +1748,8 @@ footer::after {
 }
 
 .social-links a:hover {
-  background: var(--teal);
-  border-color: var(--teal);
+  background: var(--coral);
+  border-color: var(--coral);
   transform: translateY(-2px);
 }
 
@@ -1630,7 +1822,7 @@ footer::after {
 }
 
 .team-photos img:hover {
-  border-color: var(--teal);
+  border-color: var(--coral);
   transform: scale(1.08);
 }
 
@@ -1723,7 +1915,7 @@ footer::after {
   display: inline-block;
   width: 1.5px;
   height: 0.92em;
-  background: var(--teal);
+  background: var(--coral);
   margin-left: 1px;
   vertical-align: baseline;
   position: relative;
@@ -1748,8 +1940,8 @@ footer::after {
   position: relative;
   display: inline-block;
   width: 100%;
-  background: linear-gradient(135deg, var(--teal-dark), var(--teal), var(--sage));
-  background-size: 200% auto;
+  background: linear-gradient(135deg, var(--teal-dark), var(--teal), var(--coral), var(--peach));
+  background-size: 300% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -1764,7 +1956,7 @@ footer::after {
 
 /* ===== LIVING GRADIENT BACKGROUND ===== */
 .living-bg {
-  background: linear-gradient(135deg, #f8f9f8, #f5f7f6, #f8f9f8);
+  background: linear-gradient(135deg, #fdf8f0, #faf0ee, #f5f0e8, #fdf8f0);
   background-size: 400% 400%;
   animation: living-bg-shift 12s ease infinite;
 }
@@ -1778,7 +1970,7 @@ footer::after {
 
 /* ===== TEXT SHIMMER ===== */
 .text-shimmer {
-  background: linear-gradient(90deg, hsl(220, 20%, 20%), hsl(160, 40%, 38%), hsl(220, 20%, 20%));
+  background: linear-gradient(90deg, var(--navy), var(--coral), var(--teal), var(--navy));
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1819,7 +2011,7 @@ footer::after {
   left: 0;
   width: 0;
   height: 2px;
-  background: var(--teal);
+  background: var(--coral);
   transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -1863,7 +2055,7 @@ footer::after {
 }
 
 .before-after .ba-before {
-  background: linear-gradient(135deg, hsl(220,12%,82%), hsl(220,8%,88%));
+  background: linear-gradient(135deg, hsl(10, 12%, 84%), hsl(350, 8%, 88%));
   color: var(--text-muted);
   font-style: italic;
   letter-spacing: 0.04em;
@@ -1874,7 +2066,7 @@ footer::after {
   top: 0;
   left: 0;
   height: 100%;
-  background: linear-gradient(135deg, hsl(160, 25%, 92%), hsl(160, 20%, 95%), hsl(160, 25%, 92%));
+  background: linear-gradient(135deg, hsl(162, 35%, 90%), hsl(28, 40%, 93%), hsl(162, 35%, 90%));
   background-size: 400% 400%;
   animation: living-bg-shift 12s ease infinite;
   clip-path: inset(0 50% 0 0);
@@ -1911,7 +2103,7 @@ footer::after {
   align-items: center;
   justify-content: center;
   font-size: 1rem;
-  color: var(--teal-dark);
+  color: var(--coral);
 }
 
 /* ===== BUTTON FLOWER HOVER ===== */
@@ -1923,7 +2115,7 @@ footer::after {
   right: -5px;
   width: 12px;
   height: 12px;
-  background: hsl(160, 50%, 45%);
+  background: var(--coral);
   border-radius: 50% 50% 50% 0;
   transform: scale(0) rotate(-45deg);
   opacity: 0;
@@ -1940,7 +2132,7 @@ footer::after {
   right: 8px;
   width: 9px;
   height: 9px;
-  background: hsl(140, 40%, 55%);
+  background: var(--peach);
   border-radius: 50% 50% 50% 0;
   transform: scale(0) rotate(-30deg);
   opacity: 0;
@@ -1954,7 +2146,7 @@ footer::after {
   transform: scale(1) rotate(-45deg);
   opacity: 0.85;
   transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-  box-shadow: 8px 6px 0 -1px hsla(120, 35%, 50%, 0.5);
+  box-shadow: 8px 6px 0 -1px hsla(28, 85%, 72%, 0.5);
 }
 
 .btn:hover::after {
@@ -1977,7 +2169,7 @@ footer::after {
   left: 8%;
   right: 8%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(61,122,97,0.35), transparent);
+  background: linear-gradient(90deg, transparent, hsla(12, 76%, 62%, 0.3), transparent);
 }
 
 .botanical-border::after {
@@ -1987,7 +2179,7 @@ footer::after {
   left: 8%;
   right: 8%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(61,122,97,0.35), transparent);
+  background: linear-gradient(90deg, transparent, hsla(12, 76%, 62%, 0.3), transparent);
 }
 
 /* ===== SCROLL PROGRESS BAR ===== */
@@ -1996,7 +2188,7 @@ footer::after {
   top: 56px;
   left: 0;
   height: 2px;
-  background: linear-gradient(90deg, hsl(160, 45%, 35%), hsl(160, 40%, 45%), hsl(160, 30%, 55%));
+  background: linear-gradient(90deg, var(--coral), var(--teal), var(--peach));
   z-index: 999;
   transition: width 0.15s linear;
   width: 0;
@@ -2005,6 +2197,15 @@ footer::after {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 992px) {
+  .transformation-collage {
+    width: 45%;
+    right: -2%;
+  }
+
+  .transformation-collage .collage-container {
+    --coll-size: 30;
+  }
+
   .program-content {
     grid-template-columns: 1fr;
   }
@@ -2065,6 +2266,16 @@ footer::after {
 }
 
 @media (max-width: 768px) {
+  .transformation-collage {
+    width: 40%;
+    right: -3%;
+    opacity: 0.4;
+  }
+
+  .transformation-collage .collage-container {
+    --coll-size: 22;
+  }
+
   nav {
     display: none;
     position: absolute;
