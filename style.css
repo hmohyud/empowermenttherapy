@@ -387,19 +387,103 @@ nav a + a::before {
   height: 56px; /* matches fixed header height */
 }
 
-/* ===== HERO COLLAGE SECTION ===== */
-.hero-collage-section {
-  padding: 0 !important;
-  background: radial-gradient(ellipse at 50% 45%, #f2ebe6 0%, #e8dfd8 45%, #ddd3cb 100%) !important;
-  overflow: hidden;
-}
-.hero-collage-wrapper {
+/* ===== CLOUD HERO SECTION ===== */
+.hero-clouds-section {
   position: relative;
   width: 100%;
+  height: calc(100vh - 56px);
+  min-height: 450px;
+  max-height: 850px;
   overflow: hidden;
+  /* Fallback while canvas loads — matches the renderer setClearColor (0x7a9e8e) */
+  background: #7a9e8e;
 }
+
+#cloudCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-clouds-overlay {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0 clamp(1.5rem, 4vw, 3rem);
+  pointer-events: none;
+  /* Soft radial vignette behind the text for contrast */
+  background: radial-gradient(
+    ellipse 70% 50% at 50% 50%,
+    rgba(30, 50, 40, 0.45) 0%,
+    rgba(30, 50, 40, 0.2) 50%,
+    transparent 80%
+  );
+}
+
+.hero-clouds-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: bold;
+  color: #fffbf2;
+  text-align: center;
+  text-shadow:
+    0 2px 8px rgba(0,0,0,0.5),
+    0 4px 25px rgba(0,0,0,0.3),
+    0 0 60px rgba(30,50,40,0.4);
+  letter-spacing: 0.02em;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.hero-clouds-title .char,
+.hero-clouds-title .char-space {
+  display: inline-block;
+}
+
+.hero-clouds-section .typewriter-text {
+  pointer-events: auto;
+  color: #fffbf2;
+  font-style: italic;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.5), 0 2px 15px rgba(0,0,0,0.3);
+}
+
+.hero-clouds-section .typewriter-text .cursor {
+  background: #fffbf2;
+}
+
+/* Hero text below the clouds */
+.hero-text-content {
+  background: #ffffff;
+  padding-top: clamp(1rem, 2vw, 1.5rem);
+  padding-bottom: clamp(1.25rem, 3vw, 2.25rem);
+}
+
+@media (max-width: 768px) {
+  .hero-clouds-section {
+    height: calc(70vh - 52px);
+    min-height: 350px;
+  }
+  .hero-clouds-title {
+    font-size: clamp(1.8rem, 8vw, 2.8rem);
+  }
+}
+@media (max-width: 480px) {
+  .hero-clouds-section {
+    height: calc(60vh - 52px);
+    min-height: 300px;
+  }
+}
+
+/* ===== BOTANICAL COLLAGE (as background layer) ===== */
 .collage-container {
-  --coll-size: 118;
+  --coll-size: 80;
   --unit: calc((var(--coll-size) / 1366) * 1vmin);
   position: relative;
   min-width: calc(1366 * var(--unit));
@@ -410,8 +494,42 @@ nav a + a::before {
 
 /* FOUC prevention — hide until GSAP sets initial states */
 #collage img, .top-branch-container { visibility: hidden; }
-.hero-collage-ready #collage img,
-.hero-collage-ready .top-branch-container { visibility: visible; }
+.collage-ready #collage img,
+.collage-ready .top-branch-container { visibility: visible; }
+
+.collage-bg-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Standalone botanical interlude — dedicated visual section */
+.botanical-interlude {
+  position: relative;
+  overflow: hidden;
+  height: clamp(350px, 50vw, 550px);
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    hsl(45, 30%, 95%) 15%,
+    hsl(40, 25%, 92%) 50%,
+    hsl(45, 30%, 95%) 85%,
+    #ffffff 100%
+  );
+}
+
+.collage-host-section {
+  position: relative;
+  overflow: hidden;
+}
 
 /* Feathers */
 #feather_1 { position: absolute; top: 19%; left: 35%; width: calc(100 * var(--unit)); }
@@ -454,65 +572,86 @@ nav a + a::before {
 }
 #top-branch-branch { position: absolute; width: calc(540 * var(--unit)); }
 #top-branch-cover {
-  position: absolute; width: 100%; height: 100%; background: #e8dfd8;
+  position: absolute; width: 100%; height: 100%; background: transparent;
 }
 #top-branch-f1 { position: absolute; top: 17.5%; left: 50.5%; width: calc(60 * var(--unit)); }
 #top-branch-f2 { position: absolute; top: 19.5%; left: 58.5%; width: calc(73 * var(--unit)); }
 #top-branch-f3 { position: absolute; top: 22.5%; left: 62.1%; width: calc(73 * var(--unit)); }
 
-/* Title / Letter container */
-#letter-container {
-  position: absolute; top: 50%; left: 50%; width: 100%; text-align: center;
-  transform: translate(-50%, -50%); z-index: 10;
+/* ===== 3D DIORAMA LAYOUT ===== */
+.program-details-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+  margin-bottom: 1.5rem;
 }
-#letter {
+
+.program-details-text p {
+  font-size: 0.98rem;
+  line-height: 1.7;
+  margin-bottom: 0.85rem;
+}
+
+.diorama-wrapper {
+  position: sticky;
+  top: 5rem;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(0,0,0,0.06);
+  background: #d2cfc8;
+  /* positioned context for loader overlay */
+}
+
+#dioramaCanvas {
   width: 100%;
-  color: #fffbf2;
-  font-weight: bold;
-  font-size: calc(86 * var(--unit));
-  font-family: var(--font-heading);
-  -webkit-text-stroke: calc(4 * var(--unit)) hsl(30, 8%, 22%);
-  paint-order: stroke fill;
-  margin: 0;
-  line-height: 1.15;
-  white-space: nowrap;
-}
-#letter .char, #letter .char-space { display: inline-block; }
-
-/* Hero text below the collage */
-.hero-text-content {
-  background: #ffffff;
-  padding-top: clamp(1rem, 2vw, 1.5rem);
-  padding-bottom: clamp(1.25rem, 3vw, 2.25rem);
+  aspect-ratio: 4 / 3;
+  display: block;
+  cursor: grab;
 }
 
-@media (max-width: 1100px) {
-  .collage-container { --coll-size: 95; }
-  #letter { font-size: calc(78 * var(--unit)); }
+#dioramaCanvas:active {
+  cursor: grabbing;
 }
-@media (max-width: 768px) {
-  .collage-container { --coll-size: 80; }
-  #letter-container { top: 55%; }
-  #letter {
-    font-size: max(calc(72 * var(--unit)), 7.5vw);
-    white-space: normal;
-    line-height: 1.1;
-    -webkit-text-stroke: max(calc(4 * var(--unit)), 2px) hsl(30, 8%, 22%);
+
+.diorama-caption {
+  text-align: center;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--text-muted);
+  padding: 0.6rem;
+  margin-bottom: 0;
+  background: rgba(255,255,255,0.92);
+  border-top: 1px solid rgba(0,0,0,0.04);
+}
+
+#diorama-loader {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  display: grid;
+  place-content: center;
+  background: #d2cfc8;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  z-index: 2;
+  transition: opacity 0.5s;
+}
+
+@media (max-width: 992px) {
+  .program-details-layout {
+    grid-template-columns: 1fr;
   }
-  /* Stack each word on its own line */
-  #letter .char-space {
-    display: block;
-    height: 0;
-    overflow: hidden;
+  .diorama-wrapper {
+    position: static;
+    max-width: 500px;
+    margin: 0 auto;
   }
 }
 @media (max-width: 480px) {
-  .collage-container { --coll-size: 65; }
-  #letter {
-    font-size: max(calc(65 * var(--unit)), 10vw);
-    white-space: normal;
-    line-height: 1.1;
-    -webkit-text-stroke: max(calc(4 * var(--unit)), 1.5px) hsl(30, 8%, 22%);
+  .diorama-wrapper {
+    max-width: 100%;
   }
 }
 

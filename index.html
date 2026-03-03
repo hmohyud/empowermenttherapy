@@ -6,6 +6,14 @@
   <title>The Empowerment Institute</title>
   <link href="https://fonts.googleapis.com/css2?family=Sorts+Mill+Goudy:ital@0;1&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.167.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.167.0/examples/jsm/"
+    }
+  }
+  </script>
 </head>
 <body>
 
@@ -31,59 +39,21 @@
 
   <div class="page-spacer"></div>
 
-  <!-- Hero: Botanical Collage -->
-  <section class="hero-collage-section" id="heroCollageSection">
-    <div class="hero-collage-wrapper">
-      <div class="collage-container">
-        <div id="collage">
-          <!-- top -->
-          <img id="top-branch-f1" src="https://i.postimg.cc/y8F2yG3P/top-branch-f1.png" alt="">
-          <div id="top-branch" class="top-branch-container">
-            <img id="top-branch-branch" src="https://i.postimg.cc/xTNwc80B/top-branch-branch.png" alt="">
-            <div id="top-branch-cover"></div>
-          </div>
-          <img id="top-branch-f2" src="https://i.postimg.cc/K8XdLbjj/top-branch-f2.png" alt="">
-          <img id="top-branch-f3" src="https://i.postimg.cc/MG54hjDf/top-branch-f3.png" alt="">
-          <!-- feathers -->
-          <img id="feather_2" src="https://i.postimg.cc/T1svBWTJ/feather-2.png" alt="">
-          <img id="feather_3" src="https://i.postimg.cc/qqqdmGH7/feather-3.png" alt="">
-          <img id="feather_4" src="https://i.postimg.cc/4dBgbSMM/feather-4.png" alt="">
-          <img id="feather_5" src="https://i.postimg.cc/sDBr7KJ6/feather-5.png" alt="">
-          <img id="feather_1" src="https://i.postimg.cc/3rfhkz20/feather-1.png" alt="">
-          <!-- bird -->
-          <img id="bird" src="https://i.postimg.cc/brsK0N1D/bird.png" alt="">
-          <!-- left side -->
-          <img id="left-branch" src="https://i.postimg.cc/QxRrb54X/left-branch.png" alt="">
-          <img id="left-pine" src="https://i.postimg.cc/W4VcRVcC/left-pine.png" alt="">
-          <!-- middle -->
-          <img id="red_mi" src="https://i.postimg.cc/C1v3ffnp/red-mi.png" alt="">
-          <!-- middle leaves -->
-          <img id="leaf_1" src="https://i.postimg.cc/zv64xZkd/leaf-1.png" alt="">
-          <img id="leaf_2" src="https://i.postimg.cc/jjh0t1s5/leaf-2.png" alt="">
-          <img id="leaf_3" src="https://i.postimg.cc/440CfVTz/leaf-3.png" alt="">
-          <img id="leaf_4" src="https://i.postimg.cc/rmpbcFnn/leaf-4.png" alt="">
-          <!-- middle branch -->
-          <img id="center-branch" src="https://i.postimg.cc/G2h02j2j/center-branch.png" alt="">
-          <img id="center-branch-big" src="https://i.postimg.cc/GpdV7jk1/center-branch-big.png" alt="">
-          <!-- right side -->
-          <img id="right-pine-big" src="https://i.postimg.cc/vBSKmFCQ/right-pine-big.png" alt="">
-          <img id="right-pine-small" src="https://i.postimg.cc/0yD1HQF7/right-pine-small.png" alt="">
-          <!-- title -->
-          <div id="letter-container">
-            <h1 id="letter">Empowerment Therapy Institute</h1>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="container hero-text-content">
-      <div class="typewriter-text text-shimmer" id="typewriter"></div>
-      <div class="section-divider"><span class="ornament"></span></div>
-      <p style="max-width:800px;margin-left:auto;margin-right:auto;text-align:center;">Empowerment Therapy is for those of us who want to accompany others on the journey towards equilibrium, wholeness, and connection with their authentic self. It supports us in helping our clients identify, trust, and endeavor to meet their needs because when our needs are met, we thrive!</p>
+  <!-- Hero: Live Clouds -->
+  <section class="hero-clouds-section" id="heroCloudsSection">
+    <canvas id="cloudCanvas"></canvas>
+    <div class="hero-clouds-overlay">
+      <h1 id="heroTitle" class="hero-clouds-title">Empowerment Therapy Institute</h1>
+      <div class="typewriter-text" id="typewriter"></div>
     </div>
   </section>
+  <div class="container hero-text-content">
+    <div class="section-divider"><span class="ornament"></span></div>
+    <p style="max-width:800px;margin-left:auto;margin-right:auto;text-align:center;">Empowerment Therapy is for those of us who want to accompany others on the journey towards equilibrium, wholeness, and connection with their authentic self. It supports us in helping our clients identify, trust, and endeavor to meet their needs because when our needs are met, we thrive!</p>
+  </div>
 
-  <!-- What is ET — with logo and founders side by side -->
-  <section class="fade-in corner-flourish">
+  <!-- What is ET -->
+  <section class="fade-in corner-flourish" id="whatIsEtSection">
     <div class="container">
       <img src="images/logo-body.png" alt="Empowerment Therapy Logo" style="display:block;margin:0 auto 0.75rem;max-width:120px;">
       <h2>What is Empowerment Therapy?</h2>
@@ -147,15 +117,22 @@
     </div>
   </section>
 
-  <!-- Program details -->
-  <section class="fade-in">
+  <!-- Program details with 3D Diorama -->
+  <section class="fade-in" id="programDetailsSection">
     <div class="container">
-      <div class="program-content-text" style="max-width:800px;margin:0 auto;">
+      <div class="program-details-layout">
+        <div class="program-details-text">
           <p>Empowerment Therapy is for therapists, coaches, and anyone who wants to do Empowerment work — help others create more satisfying relationships and build more fulfilling lives.</p>
           <p>Empowerment practitioners don't need a mental health background. Yet, while the work is therapeutic, it's not a substitute for professional psychotherapy.</p>
           <p>In our program, we develop practitioners who go out in the world and accompany people without access to support services.</p>
           <p>Throughout the program, we foster the personal development of the participants in the safety of a close-knit learning community. We engage in processes that bring about healing and growth. At the end of the course, participants often report deeper self-connection, and increased self-acceptance and self-confidence.</p>
           <p>In addition to the regular sessions, we invite group members to attend a weekly session where they practice empathic listening and apply ET therapeutic interventions and processes. This is a space for learning, connection and community.</p>
+        </div>
+        <div class="diorama-wrapper">
+          <div id="diorama-loader">Loading 3D scene...</div>
+          <canvas id="dioramaCanvas"></canvas>
+          <p class="diorama-caption">Click and drag to explore the space</p>
+        </div>
       </div>
       <div class="highlight-box">
         <p>To register, please request an orientation session at <a href="mailto:empowermenttherapyinstitute@gmail.com">empowermenttherapyinstitute@gmail.com</a></p>
@@ -250,6 +227,40 @@
     </div>
   </section>
 
+  <!-- Botanical Interlude — standalone scroll-linked collage animation -->
+  <section class="botanical-interlude collage-host-section" id="botanicalInterlude">
+    <div class="collage-bg-layer" id="collageBgLayer">
+      <div class="collage-container">
+        <div id="collage">
+          <img id="top-branch-f1" src="https://i.postimg.cc/y8F2yG3P/top-branch-f1.png" alt="">
+          <div id="top-branch" class="top-branch-container">
+            <img id="top-branch-branch" src="https://i.postimg.cc/xTNwc80B/top-branch-branch.png" alt="">
+            <div id="top-branch-cover"></div>
+          </div>
+          <img id="top-branch-f2" src="https://i.postimg.cc/K8XdLbjj/top-branch-f2.png" alt="">
+          <img id="top-branch-f3" src="https://i.postimg.cc/MG54hjDf/top-branch-f3.png" alt="">
+          <img id="feather_2" src="https://i.postimg.cc/T1svBWTJ/feather-2.png" alt="">
+          <img id="feather_3" src="https://i.postimg.cc/qqqdmGH7/feather-3.png" alt="">
+          <img id="feather_4" src="https://i.postimg.cc/4dBgbSMM/feather-4.png" alt="">
+          <img id="feather_5" src="https://i.postimg.cc/sDBr7KJ6/feather-5.png" alt="">
+          <img id="feather_1" src="https://i.postimg.cc/3rfhkz20/feather-1.png" alt="">
+          <img id="bird" src="https://i.postimg.cc/brsK0N1D/bird.png" alt="">
+          <img id="left-branch" src="https://i.postimg.cc/QxRrb54X/left-branch.png" alt="">
+          <img id="left-pine" src="https://i.postimg.cc/W4VcRVcC/left-pine.png" alt="">
+          <img id="red_mi" src="https://i.postimg.cc/C1v3ffnp/red-mi.png" alt="">
+          <img id="leaf_1" src="https://i.postimg.cc/zv64xZkd/leaf-1.png" alt="">
+          <img id="leaf_2" src="https://i.postimg.cc/jjh0t1s5/leaf-2.png" alt="">
+          <img id="leaf_3" src="https://i.postimg.cc/440CfVTz/leaf-3.png" alt="">
+          <img id="leaf_4" src="https://i.postimg.cc/rmpbcFnn/leaf-4.png" alt="">
+          <img id="center-branch" src="https://i.postimg.cc/G2h02j2j/center-branch.png" alt="">
+          <img id="center-branch-big" src="https://i.postimg.cc/GpdV7jk1/center-branch-big.png" alt="">
+          <img id="right-pine-big" src="https://i.postimg.cc/vBSKmFCQ/right-pine-big.png" alt="">
+          <img id="right-pine-small" src="https://i.postimg.cc/0yD1HQF7/right-pine-small.png" alt="">
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- FAQ -->
   <section class="fade-in">
     <div class="container">
@@ -328,8 +339,9 @@
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script>
-  // ===== BOTANICAL COLLAGE HERO ANIMATION =====
+  // ===== HERO TITLE ANIMATION =====
   (function(){
     // Manual SplitText replacement
     function splitChars(id){
@@ -344,51 +356,79 @@
       return chars;
     }
 
+    // Split hero title into chars and animate
+    var titleChars=splitChars('heroTitle');
+    gsap.set(titleChars,{opacity:0,y:40,rotateX:-90,transformOrigin:'50% 100%'});
+
+    function startTitleAnimation(){
+      gsap.to(titleChars,{
+        duration:1.0,
+        opacity:1,
+        y:0,
+        rotateX:0,
+        ease:'power3.out',
+        stagger:{each:0.035},
+        delay:0.5
+      });
+    }
+
+    if(document.hidden){
+      document.addEventListener('visibilitychange', function onVisible(){
+        if(!document.hidden){
+          document.removeEventListener('visibilitychange', onVisible);
+          startTitleAnimation();
+        }
+      });
+    } else {
+      startTitleAnimation();
+    }
+  })();
+
+  // ===== SCROLL-LINKED BOTANICAL COLLAGE =====
+  (function(){
+    gsap.registerPlugin(ScrollTrigger);
     gsap.defaults({ease:"back.out(1.4)"});
 
-    // Helper: set initial state
     function setScaleZero(sel,ox,oy,rot){
       gsap.set(sel,{transformOrigin:ox+'% '+oy+'%',scale:0,rotate:rot});
     }
 
-    // Right pine
+    // Set initial states
     setScaleZero('#right-pine-big',0,90,30);
     gsap.set('#right-pine-small',{transformOrigin:'0% 40%',scale:0,rotate:40,x:-50,y:10});
-    // Center branch
     setScaleZero('#center-branch',90,100,20);
     setScaleZero('#center-branch-big',20,95,-50);
-    // Feathers
     setScaleZero('#feather_2',120,0,-60);
     setScaleZero('#feather_4',140,50,-70);
     setScaleZero('#feather_3',120,140,-100);
     setScaleZero('#feather_5',80,120,-110);
     setScaleZero('#feather_1',70,100,-100);
-    // Bird
     setScaleZero('#bird',20,100,-100);
-    // Left branches
     setScaleZero('#left-branch',100,90,-100);
     setScaleZero('#left-pine',70,120,-100);
-    // Red berries
     setScaleZero('#red_mi',0,50,-150);
-    // Leaves
     setScaleZero('#leaf_1',90,80,-60);
     setScaleZero('#leaf_2',30,10,-50);
     setScaleZero('#leaf_3',20,80,-40);
     setScaleZero('#leaf_4',70,10,-50);
-    // Top branch
     setScaleZero('#top-branch-f1',100,60,30);
     setScaleZero('#top-branch-f2',50,70,30);
     setScaleZero('#top-branch-f3',70,25,-30);
 
-    // Split title into chars
-    var titleChars=splitChars('letter');
-    gsap.set(titleChars,{opacity:0,y:25});
+    // Mark ready (makes elements visible)
+    var sect=document.getElementById('botanicalInterlude');
+    if(sect) sect.classList.add('collage-ready');
 
-    // Mark ready (makes elements visible after GSAP sets scale:0)
-    document.getElementById('heroCollageSection').classList.add('hero-collage-ready');
+    // Build scroll-linked timeline
+    var tl=gsap.timeline({
+      scrollTrigger:{
+        trigger:'#botanicalInterlude',
+        start:'top 80%',
+        end:'bottom 20%',
+        scrub:1
+      }
+    });
 
-    // Build timeline
-    var tl=gsap.timeline({paused:true});
     tl.to('#center-branch',{scale:1,rotate:15,duration:1.7},0)
       .to('#leaf_1',{scale:1,rotate:0,duration:1.1},0.1)
       .to('#leaf_2',{scale:1,rotate:0,duration:1.3},0.2)
@@ -409,24 +449,7 @@
       .to('#top-branch-cover',{scaleX:0,transformOrigin:'left',duration:2},0.5)
       .to('#top-branch-f3',{scale:1,rotate:0,duration:1.5},0.9)
       .to('#top-branch-f2',{scale:1,rotate:0,duration:1.7},1.2)
-      .to('#top-branch-f1',{scale:1,rotate:0,duration:1.7},1.4)
-      .to(titleChars,{duration:0.8,opacity:1,y:0,stagger:{each:0.04}},0.5);
-
-    // Auto-play: start after 1s when tab is visible
-    function startCollageAnimation(){
-      setTimeout(function(){ tl.play(); }, 1000);
-    }
-    if(document.hidden){
-      // Tab loaded in background — wait until it becomes visible
-      document.addEventListener('visibilitychange', function onVisible(){
-        if(!document.hidden){
-          document.removeEventListener('visibilitychange', onVisible);
-          startCollageAnimation();
-        }
-      });
-    } else {
-      startCollageAnimation();
-    }
+      .to('#top-branch-f1',{scale:1,rotate:0,duration:1.7},1.4);
   })();
   </script>
 
@@ -496,6 +519,230 @@
       ba.addEventListener('click', (e) => { if (!dragging) updateBA(e.clientX); });
     }
 
+  </script>
+
+  <!-- Three.js: Cloud Hero + 3D Diorama -->
+  <script type="module">
+  // ===== CLOUD HERO =====
+  import * as THREE from 'three';
+  import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+
+  (function(){
+    var canvas=document.getElementById('cloudCanvas');
+    if(!canvas) return;
+    var section=document.getElementById('heroCloudsSection');
+
+    // Warm sage fog color
+    var fogColor=new THREE.Color(0x7a9e8e);
+
+    // Renderer — opaque, fog-colored background (like original mrdoob demo)
+    var renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:false});
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio,1.5));
+    renderer.setClearColor(fogColor);
+
+    var scene=new THREE.Scene();
+
+    var camera=new THREE.PerspectiveCamera(30,section.clientWidth/section.clientHeight,1,3000);
+    camera.position.z=6000;
+
+    // Shaders — exact match of the original mrdoob clouds
+    var vertexShader=`
+      varying vec2 vUv;
+      void main(){
+        vUv=uv;
+        gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);
+      }
+    `;
+    var fragmentShader=`
+      uniform sampler2D map;
+      uniform vec3 fogColor;
+      uniform float fogNear;
+      uniform float fogFar;
+      varying vec2 vUv;
+      void main(){
+        float depth=gl_FragCoord.z/gl_FragCoord.w;
+        float fogFactor=smoothstep(fogNear,fogFar,depth);
+        gl_FragColor=texture2D(map,vUv);
+        gl_FragColor.w*=pow(gl_FragCoord.z,20.0);
+        gl_FragColor=mix(gl_FragColor,vec4(fogColor,gl_FragColor.w),fogFactor);
+      }
+    `;
+
+    // Load the REAL mrdoob cloud sprite texture (starts animating once loaded)
+    var textureLoader=new THREE.TextureLoader();
+    textureLoader.load('https://mrdoob.com/lab/javascript/webgl/clouds/cloud10.png',function(cloudTexture){
+
+      cloudTexture.magFilter=THREE.LinearMipMapLinearFilter;
+      cloudTexture.minFilter=THREE.LinearMipMapLinearFilter;
+
+      var material=new THREE.ShaderMaterial({
+        uniforms:{
+          map:{value:cloudTexture},
+          fogColor:{value:fogColor},
+          fogNear:{value:-100},
+          fogFar:{value:3000}
+        },
+        vertexShader:vertexShader,
+        fragmentShader:fragmentShader,
+        depthWrite:false,
+        depthTest:false,
+        transparent:true
+      });
+
+      // Build cloud geometry — 8000 random planes (3000 on mobile)
+      var isMobile=window.innerWidth<768;
+      var CLOUD_COUNT=isMobile?3000:8000;
+      var geometries=[];
+      var planeGeo=new THREE.PlaneGeometry(64,64);
+
+      for(var i=0;i<CLOUD_COUNT;i++){
+        var g=planeGeo.clone();
+        var matrix=new THREE.Matrix4();
+        matrix.compose(
+          new THREE.Vector3(Math.random()*1000-500,-Math.random()*Math.random()*200-15,i),
+          new THREE.Quaternion().setFromEuler(new THREE.Euler(0,0,Math.random()*Math.PI)),
+          new THREE.Vector3(1,1,1).multiplyScalar(Math.random()*Math.random()*1.5+0.5)
+        );
+        g.applyMatrix4(matrix);
+        geometries.push(g);
+      }
+
+      var mergedGeo=mergeGeometries(geometries);
+      var mesh1=new THREE.Mesh(mergedGeo,material);
+      scene.add(mesh1);
+      var mesh2=new THREE.Mesh(mergedGeo,material);
+      mesh2.position.z=-8000;
+      scene.add(mesh2);
+
+      // Start animating once texture is loaded
+      startAnimate();
+    });
+
+    // Resize
+    function onResize(){
+      var w=section.clientWidth;
+      var h=section.clientHeight;
+      camera.aspect=w/h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w,h);
+    }
+    window.addEventListener('resize',onResize);
+    onResize();
+
+    // Animation — NO camera rotation, just position movement (matching original)
+    var animId;
+    var startTime=Date.now();
+    function startAnimate(){
+      function animate(){
+        animId=requestAnimationFrame(animate);
+        var position=((Date.now()-startTime)*0.03)%8000;
+        camera.position.x+=(0-camera.position.x)*0.01;
+        camera.position.y+=(0-camera.position.y)*0.01;
+        camera.position.z=-position+8000;
+        renderer.render(scene,camera);
+      }
+      // Visibility-based pause
+      document.addEventListener('visibilitychange',function(){
+        if(document.hidden){ cancelAnimationFrame(animId); }
+        else { animate(); }
+      });
+      animate();
+    }
+  })();
+
+  // ===== 3D DIORAMA =====
+  (function(){
+    var canvas=document.getElementById('dioramaCanvas');
+    if(!canvas) return;
+
+    // Lazy-load: only initialize when near viewport
+    var initObserver=new IntersectionObserver(function(entries){
+      if(entries[0].isIntersecting){
+        initObserver.disconnect();
+        initDiorama();
+      }
+    },{rootMargin:'300px'});
+    initObserver.observe(canvas);
+
+    function initDiorama(){
+      Promise.all([
+        import('three/addons/loaders/GLTFLoader.js'),
+        import('three/addons/controls/OrbitControls.js')
+      ]).then(function(modules){
+        var GLTFLoader=modules[0].GLTFLoader;
+        var OrbitControls=modules[1].OrbitControls;
+
+        var renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:true});
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+        renderer.outputColorSpace=THREE.SRGBColorSpace;
+
+        var scene=new THREE.Scene();
+        var camera=new THREE.PerspectiveCamera(10,canvas.clientWidth/canvas.clientHeight,0.1,100);
+        camera.position.set(8,4,15);
+
+        var controls=new OrbitControls(camera,canvas);
+        controls.enableDamping=true;
+        controls.dampingFactor=0.05;
+        controls.minDistance=21;
+        controls.maxDistance=50;
+        controls.minPolarAngle=Math.PI/5;
+        controls.maxPolarAngle=Math.PI/2;
+        controls.enablePan=false;
+
+        // Load baked texture
+        var textureLoader=new THREE.TextureLoader();
+        var bakedTexture=textureLoader.load(
+          'https://raw.githubusercontent.com/ricardoolivaalonso/ThreeJS-Room13/main/static/baked.jpg'
+        );
+        bakedTexture.flipY=false;
+        bakedTexture.colorSpace=THREE.SRGBColorSpace;
+        var bakedMaterial=new THREE.MeshBasicMaterial({map:bakedTexture});
+
+        // Load GLTF model
+        var gltfLoader=new GLTFLoader();
+        gltfLoader.load(
+          'https://raw.githubusercontent.com/ricardoolivaalonso/ThreeJS-Room13/main/static/model.glb',
+          function(gltf){
+            var model=gltf.scene;
+            model.traverse(function(child){
+              if(child.isMesh) child.material=bakedMaterial;
+            });
+            scene.add(model);
+            // Hide loader
+            var loader=document.getElementById('diorama-loader');
+            if(loader){ loader.style.opacity='0'; setTimeout(function(){ loader.style.display='none'; },500); }
+          }
+        );
+
+        // Resize
+        function resize(){
+          var w=canvas.clientWidth;
+          var h=canvas.clientHeight;
+          if(canvas.width!==w||canvas.height!==h){
+            renderer.setSize(w,h,false);
+            camera.aspect=w/h;
+            camera.updateProjectionMatrix();
+          }
+        }
+
+        // Visibility-based rendering
+        var isVisible=false;
+        var visObserver=new IntersectionObserver(function(entries){
+          isVisible=entries[0].isIntersecting;
+        },{threshold:0.1});
+        visObserver.observe(canvas);
+
+        function animate(){
+          requestAnimationFrame(animate);
+          if(!isVisible) return;
+          controls.update();
+          resize();
+          renderer.render(scene,camera);
+        }
+        animate();
+      });
+    }
+  })();
   </script>
 
 </body>
