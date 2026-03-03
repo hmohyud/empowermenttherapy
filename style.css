@@ -656,67 +656,36 @@ nav a + a::before {
   overflow: hidden;
 }
 
-/* ===== TRANSFORMATION LAYOUT — collage behind text ===== */
-#transformationSection {
-  overflow: visible;
-}
-
-.transformation-header {
-  position: relative;
-  margin-bottom: 0.6rem;
-  min-height: 120px;
-}
-
-.transformation-text {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-}
-
-.transformation-text .section-divider {
-  margin-bottom: 0;
-}
-
-.transformation-collage {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 50%;
-  height: 0;
-  padding-bottom: 40%;
-  transform: translate(-70%, -55%);
-  background: transparent;
-  z-index: 1;
-  pointer-events: none;
-  overflow: visible;
-  opacity: 0.55;
-}
-
-.transformation-text h2,
-.transformation-text .subtitle,
-.transformation-text .section-divider {
-  text-shadow: 0 0 12px rgba(255,255,255,0.9), 0 0 25px rgba(255,255,255,0.7);
-}
-
-.transformation-collage .collage-container {
-  --coll-size: 38;
-}
-
-.transformation-collage .collage-bg-layer {
+/* ===== BOTANICAL COLLAGE — behind testimonials ===== */
+.testimonials-collage {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 0;
+  z-index: 1;
   pointer-events: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: visible;
+  opacity: 0.4;
 }
 
-.collage-host-section {
-  position: relative;
+.testimonials-collage .collage-container {
+  --coll-size: 50;
+  transform: translateY(-15%);
+}
+
+.testimonials-collage .collage-bg-layer {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 300px;
+  pointer-events: none;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: visible;
 }
 
 /* Feathers */
@@ -2197,13 +2166,8 @@ footer::after {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 992px) {
-  .transformation-collage {
-    width: 45%;
-    right: -2%;
-  }
-
-  .transformation-collage .collage-container {
-    --coll-size: 30;
+  .testimonials-collage .collage-container {
+    --coll-size: 42;
   }
 
   .program-content {
@@ -2266,14 +2230,12 @@ footer::after {
 }
 
 @media (max-width: 768px) {
-  .transformation-collage {
-    width: 40%;
-    right: -3%;
-    opacity: 0.4;
+  .testimonials-collage {
+    opacity: 0.3;
   }
 
-  .transformation-collage .collage-container {
-    --coll-size: 22;
+  .testimonials-collage .collage-container {
+    --coll-size: 30;
   }
 
   nav {
