@@ -949,66 +949,42 @@ section:nth-of-type(4n+4):not(.living-bg) {
   background: linear-gradient(90deg, var(--teal), transparent);
 }
 
-/* Ornamental center element */
+/* Ornamental center element — two overlapping ovals (connection motif) */
 .section-divider .ornament {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  width: 22px;
+  height: 12px;
+  flex-shrink: 0;
 }
 
+.section-divider .ornament::before,
+.section-divider .ornament::after {
+  content: '';
+  position: absolute;
+  width: 13px;
+  height: 11px;
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Left oval — coral, matching the left line */
 .section-divider .ornament::before {
-  content: '';
-  width: 8px;
-  height: 8px;
-  border: 1.5px solid var(--gold);
-  background: var(--gold);
-  transform: rotate(45deg);
-  border-radius: 1px;
-  transition: background var(--transition-smooth);
+  left: 0;
+  border: 1.5px solid var(--coral);
+  background: hsla(12, 76%, 62%, 0.12);
+  z-index: 1;
 }
 
-/* Leaf variant ornament */
-.section-divider.divider-leaf .ornament::before {
-  content: '\2767';
-  border: none;
-  transform: none;
-  width: auto;
-  height: auto;
-  font-size: 1.2rem;
-  color: var(--gold);
-  line-height: 1;
-}
-
-/* Dots variant */
-.section-divider.divider-dots {
-  gap: 0;
-  max-width: 200px;
-}
-
-.section-divider.divider-dots::before,
-.section-divider.divider-dots::after {
-  display: none;
-}
-
-.section-divider.divider-dots .ornament {
-  gap: 0.5rem;
-}
-
-.section-divider.divider-dots .ornament::before {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--gold);
-  border: none;
-  transform: none;
-}
-
-.section-divider.divider-dots .ornament::after {
-  content: '';
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--sage);
+/* Right oval — teal, matching the right line; overlap reads as teal */
+.section-divider .ornament::after {
+  right: 0;
+  border: 1.5px solid var(--teal);
+  background: hsla(162, 63%, 38%, 0.22);
+  z-index: 2;
 }
 
 /* Wide botanical separator between major sections */
@@ -1138,13 +1114,8 @@ p {
   padding: 1.8rem 1.4rem 1.5rem;
   border-radius: var(--radius-lg);
   background: rgba(255, 255, 255, 0.55);
-  transition: transform 0.4s ease, box-shadow 0.35s ease;
 }
 
-.venn-side:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-md);
-}
 
 .venn-side-left {
   border: 1px solid hsla(162, 45%, 78%, 0.3);
@@ -1342,9 +1313,6 @@ p {
   transform: scale(1);
 }
 
-.venn-diagram.venn-active .venn-side:hover {
-  transform: translateY(-3px);
-}
 
 /* Subtle glow pulse on badge */
 @keyframes venn-glow {
@@ -1374,14 +1342,7 @@ p {
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
   border: 1px solid #e8e8e8;
-  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth), border-color var(--transition-smooth);
   backdrop-filter: blur(8px);
-}
-
-.schedule-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--coral);
 }
 
 .schedule-card h3 {
@@ -1457,14 +1418,8 @@ p {
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
   border: 1px solid rgba(0,0,0,0.06);
-  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth), border-color var(--transition-smooth);
 }
 
-.level-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--teal);
-}
 
 .level-card img {
   width: 100%;
@@ -1493,6 +1448,168 @@ p {
   opacity: 0.7;
 }
 
+/* ===== LEVELS PROGRESSION ===== */
+.levels-progression {
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.level-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.level-step:last-child {
+  padding-bottom: 0;
+}
+
+/* Vertical line connecting steps */
+.level-step-connector {
+  position: absolute;
+  left: 24px;
+  top: 52px;
+  bottom: -4px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--coral), var(--teal));
+  opacity: 0.3;
+}
+
+.level-step:last-child .level-step-connector {
+  display: none;
+}
+
+/* Numbered circle */
+.level-step-number {
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--white);
+  position: relative;
+  z-index: 1;
+  box-shadow: var(--shadow-md);
+  margin-top: 1.25rem;
+}
+
+.level-step--1 .level-step-number {
+  background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+}
+
+.level-step--2 .level-step-number {
+  background: linear-gradient(135deg, var(--coral), hsl(12, 76%, 52%));
+}
+
+.level-step--3 .level-step-number {
+  background: linear-gradient(135deg, var(--gold), hsl(42, 60%, 42%));
+}
+
+/* Card */
+.level-step-card {
+  flex: 1;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 1.75rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  position: relative;
+  transition: box-shadow var(--transition-smooth);
+}
+
+.level-step--1 .level-step-card {
+  border-left: 3px solid var(--teal);
+}
+
+.level-step--2 .level-step-card {
+  border-left: 3px solid var(--coral);
+}
+
+.level-step--3 .level-step-card {
+  border-left: 3px solid var(--gold);
+}
+
+/* Badge label */
+.level-step-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  margin-bottom: 0.5rem;
+}
+
+.level-step--1 .level-step-badge {
+  background: var(--teal-light);
+  color: var(--teal-dark);
+}
+
+.level-step--2 .level-step-badge {
+  background: var(--coral-light);
+  color: var(--coral);
+}
+
+.level-step--3 .level-step-badge {
+  background: hsla(42, 60%, 92%, 1);
+  color: var(--gold);
+}
+
+.level-step-card h3 {
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+  color: var(--teal-dark);
+}
+
+.level-step-card p {
+  font-size: 0.93rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.level-step-card p:last-child {
+  margin-bottom: 0;
+}
+
+.level-step-note {
+  font-style: italic;
+  font-size: 0.85rem !important;
+  opacity: 0.75;
+  margin-top: 0.35rem;
+}
+
+@media (max-width: 600px) {
+  .level-step {
+    gap: 1rem;
+  }
+
+  .level-step-number {
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+  }
+
+  .level-step-connector {
+    left: 19px;
+    top: 44px;
+  }
+
+  .level-step-card {
+    padding: 1.25rem 1.25rem;
+  }
+}
+
 /* ===== TESTIMONIALS ===== */
 .testimonials {
   display: grid;
@@ -1507,13 +1624,6 @@ p {
   border-radius: var(--radius-lg);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(0,0,0,0.06);
-  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth), border-color var(--transition-smooth);
-}
-
-.testimonial-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px hsla(12, 76%, 62%, 0.12), var(--shadow-lg);
-  border-color: var(--coral);
 }
 
 .testimonial-card img {
@@ -1524,11 +1634,6 @@ p {
   margin: 0 auto 1rem;
   border: 3px solid var(--coral);
   box-shadow: var(--shadow-sm);
-  transition: transform var(--transition-smooth);
-}
-
-.testimonial-card:hover img {
-  transform: scale(1.05);
 }
 
 .testimonial-card blockquote {
@@ -1681,15 +1786,8 @@ blockquote::before {
   width: 100%;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
-  border: 2px solid transparent;
-  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth), border-color var(--transition-smooth);
 }
 
-.team-member img:hover {
-  transform: scale(1.02);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--coral);
-}
 
 .team-member h3 {
   font-size: 1.6rem;
@@ -1945,12 +2043,6 @@ blockquote::before {
   margin-bottom: 0.4rem;
   border: 2.5px solid var(--coral);
   box-shadow: var(--shadow-sm);
-  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
-}
-
-.contact-team img:hover {
-  transform: scale(1.06);
-  box-shadow: var(--shadow-md);
 }
 
 .contact-team figcaption {
@@ -2224,12 +2316,6 @@ footer::after {
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid rgba(255,255,255,0.2);
-  transition: border-color var(--transition-fast), transform var(--transition-fast);
-}
-
-.team-photos img:hover {
-  border-color: var(--coral);
-  transform: scale(1.08);
 }
 
 .team-photos figcaption {
