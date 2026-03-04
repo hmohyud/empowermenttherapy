@@ -74,15 +74,41 @@
       <img src="images/logo-body.png" alt="Empowerment Therapy Logo" style="display:block;margin:0 auto 0.75rem;max-width:120px;">
       <h2>What is Empowerment Therapy?</h2>
       <div class="section-divider divider-leaf"><span class="ornament"></span></div>
-      <div class="founders">
-        <figure>
-          <img src="images/marshall-rosenberg.png" alt="Marshall Rosenberg">
-          <figcaption>Marshall Rosenberg</figcaption>
-        </figure>
-        <figure>
-          <img src="images/carl-rogers.jpg" alt="Carl Rogers">
-          <figcaption>Carl Rogers</figcaption>
-        </figure>
+      <div class="venn-diagram" id="vennDiagram">
+        <div class="venn-side venn-side-left">
+          <div class="venn-photo">
+            <img src="images/marshall-rosenberg.png" alt="Marshall Rosenberg">
+          </div>
+          <h4>Marshall Rosenberg</h4>
+          <p class="venn-subtitle">Nonviolent Communication</p>
+          <ul class="venn-points">
+            <li>Universal human needs</li>
+            <li>Empathic connection</li>
+            <li>Feelings as signals</li>
+          </ul>
+        </div>
+        <div class="venn-middle">
+          <div class="venn-connector">
+            <span class="venn-line venn-line-left"></span>
+            <div class="venn-badge">
+              <span class="venn-badge-title">Empowerment<br>Therapy</span>
+              <span class="venn-badge-sub">Healing · Liberation · Empowerment</span>
+            </div>
+            <span class="venn-line venn-line-right"></span>
+          </div>
+        </div>
+        <div class="venn-side venn-side-right">
+          <div class="venn-photo">
+            <img src="images/carl-rogers.jpg" alt="Carl Rogers">
+          </div>
+          <h4>Carl Rogers</h4>
+          <p class="venn-subtitle">Person-Centered Therapy</p>
+          <ul class="venn-points">
+            <li>Unconditional positive regard</li>
+            <li>Congruence &amp; authenticity</li>
+            <li>Self-actualization</li>
+          </ul>
+        </div>
       </div>
       <div style="max-width:800px;margin:0 auto;">
         <p>Grounded in the work of Marshall Rosenberg and Carl Rogers, Empowerment Therapy is founded on the fulfillment of universal human needs. The underlying principle is that when our needs are met, we feel and do well.</p>
@@ -452,6 +478,21 @@
       .to('#top-branch-f3',{scale:1,rotate:0,duration:1.5},0.9)
       .to('#top-branch-f2',{scale:1,rotate:0,duration:1.7},1.2)
       .to('#top-branch-f1',{scale:1,rotate:0,duration:1.7},1.4);
+  })();
+
+  // ===== VENN DIAGRAM SCROLL ANIMATION =====
+  (function(){
+    var venn = document.getElementById('vennDiagram');
+    if(!venn) return;
+
+    ScrollTrigger.create({
+      trigger: '#whatIsEtSection',
+      start: 'top 70%',
+      once: true,
+      onEnter: function(){
+        venn.classList.add('venn-active');
+      }
+    });
   })();
   </script>
 
