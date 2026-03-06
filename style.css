@@ -1978,6 +1978,11 @@ blockquote::before {
 }
 
 .resource-card-body .resource-list li {
+  padding: 0;
+}
+
+.resource-card-body .resource-list a {
+  display: block;
   padding: 0.75rem 1rem;
 }
 
