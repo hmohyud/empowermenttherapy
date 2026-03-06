@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Empowerment Institute</title>
-  <link href="https://fonts.googleapis.com/css2?family=Sorts+Mill+Goudy:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=DM+Serif+Display&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script type="importmap">
   {
@@ -58,42 +58,10 @@
   <!-- Hero: Live Clouds -->
   <section class="hero-clouds-section" id="heroCloudsSection">
     <canvas id="cloudCanvas"></canvas>
-    <!-- Botanical collage — behind hero title -->
-    <div class="hero-collage" id="botanicalInterlude">
-      <div class="collage-bg-layer" id="collageBgLayer">
-        <div class="collage-container">
-          <div id="collage">
-            <img id="top-branch-f1" src="https://i.postimg.cc/y8F2yG3P/top-branch-f1.png" alt="">
-            <div id="top-branch" class="top-branch-container">
-              <img id="top-branch-branch" src="https://i.postimg.cc/xTNwc80B/top-branch-branch.png" alt="">
-              <div id="top-branch-cover"></div>
-            </div>
-            <img id="top-branch-f2" src="https://i.postimg.cc/K8XdLbjj/top-branch-f2.png" alt="">
-            <img id="top-branch-f3" src="https://i.postimg.cc/MG54hjDf/top-branch-f3.png" alt="">
-            <img id="feather_2" src="https://i.postimg.cc/T1svBWTJ/feather-2.png" alt="">
-            <img id="feather_3" src="https://i.postimg.cc/qqqdmGH7/feather-3.png" alt="">
-            <img id="feather_4" src="https://i.postimg.cc/4dBgbSMM/feather-4.png" alt="">
-            <img id="feather_5" src="https://i.postimg.cc/sDBr7KJ6/feather-5.png" alt="">
-            <img id="feather_1" src="https://i.postimg.cc/3rfhkz20/feather-1.png" alt="">
-            <img id="bird" src="https://i.postimg.cc/brsK0N1D/bird.png" alt="">
-            <img id="left-branch" src="https://i.postimg.cc/QxRrb54X/left-branch.png" alt="">
-            <img id="left-pine" src="https://i.postimg.cc/W4VcRVcC/left-pine.png" alt="">
-            <img id="red_mi" src="https://i.postimg.cc/C1v3ffnp/red-mi.png" alt="">
-            <img id="leaf_1" src="https://i.postimg.cc/zv64xZkd/leaf-1.png" alt="">
-            <img id="leaf_2" src="https://i.postimg.cc/jjh0t1s5/leaf-2.png" alt="">
-            <img id="leaf_3" src="https://i.postimg.cc/440CfVTz/leaf-3.png" alt="">
-            <img id="leaf_4" src="https://i.postimg.cc/rmpbcFnn/leaf-4.png" alt="">
-            <img id="center-branch" src="https://i.postimg.cc/G2h02j2j/center-branch.png" alt="">
-            <img id="center-branch-big" src="https://i.postimg.cc/GpdV7jk1/center-branch-big.png" alt="">
-            <img id="right-pine-big" src="https://i.postimg.cc/vBSKmFCQ/right-pine-big.png" alt="">
-            <img id="right-pine-small" src="https://i.postimg.cc/0yD1HQF7/right-pine-small.png" alt="">
-          </div>
-        </div>
-      </div>
-    </div>
     <div class="hero-clouds-overlay">
       <h1 id="heroTitle" class="hero-clouds-title">Empowerment Therapy Institute</h1>
-      <div class="typewriter-text" id="typewriter"></div>
+      <img src="images/logo-body.png" alt="Empowerment Therapy Logo" class="hero-logo">
+      <p class="hero-tagline">Training empowerment practitioners around the world.</p>
     </div>
   </section>
   <div class="container hero-text-content">
@@ -104,7 +72,6 @@
   <!-- What is ET -->
   <section class="fade-in corner-flourish" id="whatIsEtSection">
     <div class="container">
-      <img src="images/logo-body.png" alt="Empowerment Therapy Logo" style="display:block;margin:0 auto 0.75rem;max-width:120px;">
       <h2>What is Empowerment Therapy?</h2>
       <div class="section-divider divider-leaf"><span class="ornament"></span></div>
       <div class="venn-diagram" id="vennDiagram">
@@ -143,9 +110,16 @@
           </ul>
         </div>
       </div>
-      <div style="max-width:800px;margin:0 auto;">
-        <p>Grounded in the work of Marshall Rosenberg and Carl Rogers, Empowerment Therapy is founded on the fulfillment of universal human needs. The underlying principle is that when our needs are met, we feel and do well.</p>
-        <p>Most people seek help because they have unmet needs that they struggle to identify and express. They may experience malaise, but can only account for it in general terms. "My teenage son doesn't listen." "My partner is distant." "I'm unhappy at my job." Even when they can transform cognitive distortions, they are not necessarily able to identify their needs and ask for what they want. The reason for this has to do with early disconnection from needs compounded with self-judgment and conditions of worth. Trauma and domination systems further limit their ability to build fulfilling lives. Thus, our work has three aims: healing, liberation and empowerment. Beyond symptom reduction, we help people to be happy and thrive.</p>
+      <div class="et-description">
+        <p class="et-description-lead">Grounded in the work of <strong>Marshall Rosenberg</strong> and <strong>Carl Rogers</strong>, Empowerment Therapy is founded on the fulfillment of universal human needs. The underlying principle is that <em>when our needs are met, we feel and do well.</em></p>
+        <p>Most people seek help because they have unmet needs that they struggle to identify and express. They may experience malaise, but can only account for it in general terms.</p>
+        <div class="et-examples">
+          <span>&ldquo;My teenage son doesn&rsquo;t listen.&rdquo;</span>
+          <span>&ldquo;My partner is distant.&rdquo;</span>
+          <span>&ldquo;I&rsquo;m unhappy at my job.&rdquo;</span>
+        </div>
+        <p>Even when they can transform cognitive distortions, they are not necessarily able to identify their needs and ask for what they want. The reason for this has to do with <strong>early disconnection from needs</strong> compounded with self-judgment and conditions of worth. Trauma and domination systems further limit their ability to build fulfilling lives.</p>
+        <p class="et-description-aims">Thus, our work has three aims: <strong>healing, liberation and empowerment.</strong> Beyond symptom reduction, we help people to be happy and thrive.</p>
       </div>
     </div>
   </section>
@@ -310,19 +284,23 @@
         <details>
           <summary>How was Empowerment Therapy developed?</summary>
           <div class="faq-answer">
-            <p>I, Myra Walden, developed the model based on my own experience as a client in therapy with a Client Centered therapist, Dr. Marge Witty, my never-ending study of the human psyche, and over 30 years of practicing psychotherapy in community mental health centers and private practice. In 1998, I started studying Nonviolent Communication and began to incorporate the concepts into my life and therapy practice. In 2021, I codified my experience and developed a coherent therapy model. We will need research to demonstrate its effectiveness, gain credibility and broaden usage in the field. Below is my testimonial.</p>
-            <p>I was 28 years old. At a gathering of friends, each of us was to answer the question, "Where do you see yourself in 10 years?"</p>
-            <p>Myra: "I see myself divorced."</p>
-            <p>Friend: "Myra, but you're not even dating!"</p>
-            <p>No, I wasn't dating at the time, but I knew that if I were to get married, no one would put up with my temper for very long. My anger and reactivity were an aftereffect of the many years of severe lack of safety and respect I went through as a teenager that resulted in self-loathing and troubled relationships. As it turns out, I did not divorce.</p>
-            <p>At age 33, I sought psychotherapy and pursued my healing in earnest. The work bore fruit. My beloved late husband of 35 years, Peter, saw me through the angry stage, and we built a relationship of connection, closeness, and communion. Many of my dreams have come true: to have very close friends, to become a therapist, a goal I conceived at age 12 and pursued at 30; to give workshops for mental health professionals and write a book to share what I've learned, and more. In 2024, six years after Peter died, I met and married Kerry, a bright and loving man I adore. There are multiple factors that contributed to these outcomes, not the least of which were receiving nondirective therapy and finding a needs-based compass to guide me in building a fulfilling life. And that's what I want to share with others.</p>
+            <p>I, Myra Walden, developed the model based on my own experience as a client in therapy with a Client Centered therapist, <strong>Dr. Marge Witty</strong>, my never-ending study of the human psyche, and over 30 years of practicing psychotherapy in community mental health centers and private practice. In 1998, I started studying <strong>Nonviolent Communication</strong> and began to incorporate the concepts into my life and therapy practice. In 2021, I codified my experience and developed a coherent therapy model. We will need research to demonstrate its effectiveness, gain credibility and broaden usage in the field. Below is my testimonial.</p>
+            <div class="faq-divider"></div>
+            <p class="faq-scene">I was 28 years old. At a gathering of friends, each of us was to answer the question, &ldquo;Where do you see yourself in 10 years?&rdquo;</p>
+            <div class="faq-dialogue">
+              <p><span class="faq-speaker">Myra:</span> &ldquo;I see myself divorced.&rdquo;</p>
+              <p><span class="faq-speaker">Friend:</span> &ldquo;Myra, but you&rsquo;re not even dating!&rdquo;</p>
+            </div>
+            <p>No, I wasn&rsquo;t dating at the time, but I knew that if I were to get married, no one would put up with my temper for very long. My anger and reactivity were an aftereffect of the many years of severe lack of safety and respect I went through as a teenager that resulted in self-loathing and troubled relationships. As it turns out, I did not divorce.</p>
+            <p>At age 33, I sought psychotherapy and pursued my healing in earnest. The work bore fruit. My beloved late husband of 35 years, Peter, saw me through the angry stage, and we built a relationship of <strong>connection, closeness, and communion.</strong> Many of my dreams have come true: to have very close friends, to become a therapist, a goal I conceived at age 12 and pursued at 30; to give workshops for mental health professionals and write a book to share what I&rsquo;ve learned, and more. In 2024, six years after Peter died, I met and married Kerry, a bright and loving man I adore.</p>
+            <p class="faq-closing">There are multiple factors that contributed to these outcomes, not the least of which were receiving nondirective therapy and finding a needs-based compass to guide me in building a fulfilling life. <strong>And that&rsquo;s what I want to share with others.</strong></p>
           </div>
         </details>
         <details>
           <summary>Is the Empowerment Therapy certification program just for therapists?</summary>
           <div class="faq-answer">
-            <p>No. It is for mental health professionals and anyone who wants to learn to accompany others in their journey of healing, growth and fulfillment, even if they don't have a background in mental health.</p>
-            <p>This approach is grounded on Carl Rogers' seminal paper The Necessary and Sufficient Conditions of Therapeutic Personality Change. In it, Rogers describes the attitudes necessary to develop a therapeutic relationship. And, as we understand from the research, the most important aspect of therapy is the relationship between the therapist and the client. ET offers comprehensive guidelines to build the therapeutic alliance. At the same time, we make it clear that our work is not a substitute for professional psychotherapy.</p>
+            <p><strong>No.</strong> It is for mental health professionals and anyone who wants to learn to accompany others in their journey of healing, growth and fulfillment, even if they don&rsquo;t have a background in mental health.</p>
+            <p>This approach is grounded on Carl Rogers&rsquo; seminal paper <em>The Necessary and Sufficient Conditions of Therapeutic Personality Change.</em> In it, Rogers describes the attitudes necessary to develop a therapeutic relationship. And, as we understand from the research, <strong>the most important aspect of therapy is the relationship</strong> between the therapist and the client. ET offers comprehensive guidelines to build the therapeutic alliance. At the same time, we make it clear that our work is not a substitute for professional psychotherapy.</p>
           </div>
         </details>
       </div>
@@ -748,68 +726,7 @@
     }
   })();
 
-  // ===== BOTANICAL COLLAGE — plays on load behind hero =====
-  (function(){
-    gsap.registerPlugin(ScrollTrigger);
-    gsap.defaults({ease:"back.out(1.4)"});
-
-    function setScaleZero(sel,ox,oy,rot){
-      gsap.set(sel,{transformOrigin:ox+'% '+oy+'%',scale:0,rotate:rot});
-    }
-
-    // Set initial states
-    setScaleZero('#right-pine-big',0,90,30);
-    gsap.set('#right-pine-small',{transformOrigin:'0% 40%',scale:0,rotate:40,x:-50,y:10});
-    setScaleZero('#center-branch',90,100,20);
-    setScaleZero('#center-branch-big',20,95,-50);
-    setScaleZero('#feather_2',120,0,-60);
-    setScaleZero('#feather_4',140,50,-70);
-    setScaleZero('#feather_3',120,140,-100);
-    setScaleZero('#feather_5',80,120,-110);
-    setScaleZero('#feather_1',70,100,-100);
-    setScaleZero('#bird',20,100,-100);
-    setScaleZero('#left-branch',100,90,-100);
-    setScaleZero('#left-pine',70,120,-100);
-    setScaleZero('#red_mi',0,50,-150);
-    setScaleZero('#leaf_1',90,80,-60);
-    setScaleZero('#leaf_2',30,10,-50);
-    setScaleZero('#leaf_3',20,80,-40);
-    setScaleZero('#leaf_4',70,10,-50);
-    gsap.set('#top-branch-branch',{transformOrigin:'50% 0%',scale:0,rotate:-25});
-    setScaleZero('#top-branch-f1',100,60,30);
-    setScaleZero('#top-branch-f2',50,70,30);
-    setScaleZero('#top-branch-f3',70,25,-30);
-
-    // Mark ready (makes elements visible)
-    var sect=document.getElementById('botanicalInterlude');
-    if(sect) sect.classList.add('collage-ready');
-
-    // Play on page load with a short delay (after hero title animation starts)
-    var tl=gsap.timeline({ delay: 1.2 });
-
-    tl.to('#center-branch',{scale:1,rotate:15,duration:1.7},0)
-      .to('#leaf_1',{scale:1,rotate:0,duration:1.1},0.1)
-      .to('#leaf_2',{scale:1,rotate:0,duration:1.3},0.2)
-      .to('#leaf_3',{scale:1,rotate:0,duration:1.3},0.1)
-      .to('#leaf_4',{scale:1,rotate:0,duration:1.2},0.1)
-      .to('#feather_2',{scale:1,rotate:0,duration:1.2},0.2)
-      .to('#feather_4',{scale:1,rotate:0,duration:1.4},0.4)
-      .to('#feather_3',{scale:1,rotate:0,duration:1.2},0.3)
-      .to('#feather_5',{scale:1,rotate:0,duration:1.2},0.4)
-      .to('#feather_1',{scale:1,rotate:0,duration:1.3},0.4)
-      .to('#red_mi',{scale:1,rotate:0,duration:1.9},0.6)
-      .to('#left-branch',{scale:1,rotate:0,duration:1.5},0.5)
-      .to('#left-pine',{scale:1,rotate:0,duration:1.3},0.4)
-      .to('#center-branch-big',{scale:1,rotate:0,duration:1.3},0.4)
-      .to('#right-pine-big',{scale:1,rotate:0,duration:1.3},0.5)
-      .to('#right-pine-small',{scale:1,rotate:0,x:0,y:0,duration:1.1},0.85)
-      .to('#bird',{scale:1,rotate:0,duration:1.6},0.5)
-      .to('#top-branch-branch',{scale:1,rotate:0,duration:1.6},0.3)
-      .to('#top-branch-cover',{scaleX:0,transformOrigin:'left',duration:2},0.5)
-      .to('#top-branch-f3',{scale:1,rotate:0,duration:1.5},0.9)
-      .to('#top-branch-f2',{scale:1,rotate:0,duration:1.7},1.2)
-      .to('#top-branch-f1',{scale:1,rotate:0,duration:1.7},1.4);
-  })();
+  gsap.registerPlugin(ScrollTrigger);
 
   // ===== VENN DIAGRAM SCROLL ANIMATION =====
   (function(){
@@ -848,26 +765,6 @@
       const bar = document.getElementById('scrollProgress');
       if (bar) { const h = document.documentElement.scrollHeight - window.innerHeight; bar.style.width = (window.scrollY / h * 100) + '%'; }
     });
-
-    // Typewriter with shimmer
-    const tw = document.getElementById('typewriter');
-    const phrases = ['When our needs are met, we thrive.', 'Healing. Liberation. Empowerment.', 'Training empathy practitioners around the world.'];
-    let pi = 0, ci = 0, deleting = false;
-    function type() {
-      const cur = phrases[pi];
-      if (deleting) {
-        tw.innerHTML = cur.substring(0, ci - 1) + '<span class="cursor"></span>';
-        ci--;
-        if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; setTimeout(type, 400); return; }
-        setTimeout(type, 25);
-      } else {
-        tw.innerHTML = cur.substring(0, ci + 1) + '<span class="cursor"></span>';
-        ci++;
-        if (ci === cur.length) { deleting = true; setTimeout(type, 2200); return; }
-        setTimeout(type, 55);
-      }
-    }
-    setTimeout(type, 2500);
 
     // Before/After slider
     const ba = document.getElementById('beforeAfter'), baSlider = document.getElementById('baSlider'), baAfter = document.getElementById('baAfter');

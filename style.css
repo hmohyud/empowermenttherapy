@@ -68,7 +68,7 @@
 }
 
 .loader-text {
-  font-family: 'Sorts Mill Goudy', Georgia, serif;
+  font-family: 'DM Serif Display', Georgia, serif;
   font-size: 1.1rem;
   font-style: italic;
   color: hsl(200, 35%, 17%);
@@ -119,8 +119,8 @@
   --radius-lg: 20px;
   --radius-xl: 32px;
 
-  --font-heading: 'Sorts Mill Goudy', Georgia, serif;
-  --font-body: 'Sorts Mill Goudy', Georgia, serif;
+  --font-heading: 'DM Serif Display', Georgia, serif;
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --max-width: 1100px;
 
   --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -353,7 +353,7 @@ nav {
 }
 
 nav a {
-  font-size: 0.92rem;
+  font-size: 1rem;
   color: var(--text-muted);
   padding: 0.4rem 0.85rem;
   text-decoration: none;
@@ -382,7 +382,7 @@ nav a + a::before {
   top: 50%;
   transform: translateY(-50%);
   color: #ddd;
-  font-size: 0.85rem;
+  font-size: 0.92rem;
   pointer-events: none;
 }
 
@@ -392,7 +392,7 @@ nav a + a::before {
   justify-content: center;
   gap: 0.5rem;
   padding: 0.75rem 2rem;
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   font-family: var(--font-body);
   border: 1.5px solid var(--coral);
   border-radius: var(--radius-xl);
@@ -603,32 +603,37 @@ nav a + a::before {
   display: inline-block;
 }
 
-.hero-clouds-section .typewriter-text {
-  position: relative;
-  pointer-events: auto;
-  color: #fffbf2;
-  font-style: italic;
-  text-shadow: 0 1px 6px rgba(0,0,0,0.5), 0 2px 15px rgba(0,0,0,0.3);
-  padding: 0.45rem 2rem;
-  white-space: nowrap;
-  text-align: center;
+/* Logo in the hero */
+.hero-logo {
+  max-width: 90px;
+  margin: 0 auto 1rem;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
 }
 
-/* Frosted glass behind the subtitle */
-.hero-clouds-section .typewriter-text::before {
+/* Static tagline */
+.hero-tagline {
+  position: relative;
+  color: #fffbf2;
+  font-size: clamp(1.15rem, 2.4vw, 1.55rem);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-align: center;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.5), 0 2px 15px rgba(0,0,0,0.3);
+  padding: 0.55rem 2rem;
+  margin: 0;
+}
+
+/* Darker frosted glass behind the tagline for readability */
+.hero-tagline::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: hsla(200, 30%, 75%, 0.18);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: hsla(200, 35%, 20%, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-radius: 14px;
-  border: 1px solid hsla(200, 30%, 90%, 0.12);
+  border: 1px solid hsla(200, 30%, 90%, 0.1);
   z-index: -1;
-}
-
-.hero-clouds-section .typewriter-text .cursor {
-  background: #fffbf2;
 }
 
 /* Hero text below the clouds */
@@ -647,11 +652,17 @@ nav a + a::before {
     font-size: clamp(1.6rem, 7vw, 2.4rem);
     padding: 0.5rem 1rem;
   }
+  .hero-logo {
+    max-width: 70px;
+  }
 }
 @media (max-width: 480px) {
   .hero-clouds-section {
     height: calc(60vh - 52px);
     min-height: 300px;
+  }
+  .hero-logo {
+    max-width: 60px;
   }
 }
 
@@ -773,7 +784,7 @@ nav a + a::before {
 }
 
 .program-details-text p {
-  font-size: 0.98rem;
+  font-size: 1.1rem;
   line-height: 1.7;
   margin-bottom: 0.85rem;
 }
@@ -845,7 +856,7 @@ nav a + a::before {
 
 .diorama-caption {
   text-align: center;
-  font-size: 0.85rem;
+  font-size: 0.92rem;
   font-style: italic;
   color: var(--text-muted);
   padding: 0.6rem;
@@ -861,7 +872,7 @@ nav a + a::before {
   place-content: center;
   background: #d2cfc8;
   font-family: var(--font-body);
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: var(--text-muted);
   z-index: 2;
   transition: opacity 0.5s;
@@ -1066,7 +1077,7 @@ section:nth-of-type(4n+4):not(.living-bg) {
 
 /* ===== TYPOGRAPHY ===== */
 h1 {
-  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-size: clamp(2rem, 4.5vw, 3rem);
   margin-bottom: 0.25rem;
   text-align: center;
   letter-spacing: -0.02em;
@@ -1074,7 +1085,7 @@ h1 {
 }
 
 h2 {
-  font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
   text-align: center;
   margin-bottom: 0.25rem;
   color: var(--teal-dark);
@@ -1082,7 +1093,7 @@ h2 {
 }
 
 .subtitle {
-  font-size: clamp(0.9rem, 1.6vw, 1.05rem);
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
   font-style: italic;
   margin-bottom: 0.75rem;
   text-align: center;
@@ -1090,9 +1101,9 @@ h2 {
 }
 
 p {
-  margin-bottom: 0.6rem;
-  font-size: 0.98rem;
-  line-height: 1.7;
+  margin-bottom: 0.7rem;
+  font-size: 1.1rem;
+  line-height: 1.75;
 }
 
 /* ===== HOME: VENN / CONVERGENCE DIAGRAM ===== */
@@ -1181,7 +1192,7 @@ p {
 }
 
 .venn-points li {
-  font-size: 0.82rem;
+  font-size: 0.92rem;
   color: var(--text-muted);
   line-height: 1.6;
   padding: 0.12rem 0;
@@ -1257,7 +1268,7 @@ p {
 
 .venn-badge-title {
   font-family: var(--font-heading);
-  font-size: 0.85rem;
+  font-size: 0.92rem;
   font-weight: 700;
   color: var(--navy);
   line-height: 1.3;
@@ -1346,7 +1357,7 @@ p {
 }
 
 .schedule-card h3 {
-  font-size: 1.2rem;
+  font-size: 1.35rem;
   margin-bottom: 0.6rem;
   color: var(--teal-dark);
 }
@@ -1354,7 +1365,7 @@ p {
 .schedule-card p {
   text-align: center;
   margin-bottom: 0.25rem;
-  font-size: 0.95rem;
+  font-size: 1.05rem;
 }
 
 .schedule-card .day {
@@ -1436,14 +1447,14 @@ p {
 }
 
 .level-card p {
-  font-size: 0.92rem;
+  font-size: 1.02rem;
   line-height: 1.7;
   color: var(--text-muted);
 }
 
 .level-card .note {
   font-style: italic;
-  font-size: 0.85rem;
+  font-size: 0.92rem;
   margin-top: 0.5rem;
   opacity: 0.7;
 }
@@ -1565,7 +1576,7 @@ p {
 }
 
 .level-step-card h3 {
-  font-size: 1.15rem;
+  font-size: 1.3rem;
   margin-bottom: 0.5rem;
   color: var(--teal-dark);
 }
@@ -1638,7 +1649,7 @@ p {
 
 .testimonial-card blockquote {
   font-style: italic;
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   line-height: 1.75;
   margin-bottom: 0.75rem;
   color: var(--navy);
@@ -1654,7 +1665,7 @@ p {
 }
 
 .testimonial-card .author {
-  font-size: 0.88rem;
+  font-size: 0.95rem;
   font-weight: 700;
   color: var(--teal-dark);
 }
@@ -1727,13 +1738,128 @@ p {
 
 .faq .faq-answer {
   padding: 0 1.25rem 1.25rem;
-  font-size: 0.98rem;
+  font-size: 1.1rem;
   line-height: 1.8;
 }
 
 .faq .faq-answer p {
   margin-bottom: 0.85rem;
   color: var(--text-muted);
+}
+
+.faq .faq-answer strong {
+  color: var(--navy);
+  font-weight: 600;
+}
+
+.faq .faq-answer em {
+  color: var(--teal-dark);
+}
+
+/* Thin divider between intro and story */
+.faq-divider {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--coral), var(--teal));
+  margin: 1rem 0;
+  opacity: 0.5;
+}
+
+/* Scene-setting text */
+.faq-scene {
+  font-style: italic;
+  color: var(--navy) !important;
+}
+
+/* Dialogue block */
+.faq-dialogue {
+  background: rgba(255, 255, 255, 0.7);
+  border-left: 3px solid var(--teal);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 0.75rem 1.25rem;
+  margin: 0.75rem 0 1rem;
+}
+
+.faq-dialogue p {
+  margin-bottom: 0.3rem !important;
+  font-style: italic;
+}
+
+.faq-dialogue p:last-child {
+  margin-bottom: 0 !important;
+}
+
+.faq-speaker {
+  font-weight: 600;
+  font-style: normal;
+  color: var(--teal-dark);
+  margin-right: 0.25rem;
+}
+
+/* Closing emphasis */
+.faq-closing {
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  padding-top: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+/* ===== ET DESCRIPTION ===== */
+.et-description {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1.08rem;
+  line-height: 1.9;
+  color: var(--charcoal);
+}
+
+.et-description p {
+  margin-bottom: 1rem;
+}
+
+.et-description-lead {
+  font-size: 1.15rem;
+  line-height: 1.85;
+}
+
+.et-description-lead strong {
+  color: var(--navy);
+  font-weight: 600;
+}
+
+.et-description-lead em {
+  color: var(--teal-dark);
+  font-style: italic;
+}
+
+.et-examples {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin: 1.25rem 0;
+}
+
+.et-examples span {
+  background: linear-gradient(135deg, #fdf8f0, #faf5f2);
+  padding: 0.6rem 1.15rem;
+  border-radius: var(--radius-md);
+  font-style: italic;
+  color: var(--charcoal);
+  font-size: 1rem;
+  border-left: 3px solid var(--coral);
+  box-shadow: var(--shadow-sm);
+}
+
+.et-description-aims {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  font-size: 1.1rem;
+}
+
+.et-description-aims strong {
+  color: var(--teal-dark);
+  font-weight: 700;
 }
 
 /* ===== BLOCKQUOTE ===== */
@@ -1790,7 +1916,7 @@ blockquote::before {
 
 
 .team-member h3 {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   margin-bottom: 0.25rem;
 }
 
@@ -1803,7 +1929,7 @@ blockquote::before {
 
 .team-member p {
   margin-bottom: 0.5rem;
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   color: var(--text-muted);
   line-height: 1.65;
 }
@@ -1871,14 +1997,14 @@ blockquote::before {
 .resource-list .resource-author {
   display: block;
   font-style: italic;
-  font-size: 0.88rem;
+  font-size: 0.95rem;
   color: var(--text-muted);
   margin-top: 0.2rem;
 }
 
 .resource-list .resource-description {
   display: block;
-  font-size: 0.88rem;
+  font-size: 0.95rem;
   margin-top: 0.2rem;
   color: var(--text-muted);
 }
@@ -1931,7 +2057,7 @@ blockquote::before {
 
 .resource-card-title {
   font-family: var(--font-heading);
-  font-size: 1.05rem;
+  font-size: 1.15rem;
   font-weight: 400;
   color: var(--navy);
   margin: 0;
@@ -1939,7 +2065,7 @@ blockquote::before {
 }
 
 .resource-card-count {
-  font-size: 0.78rem;
+  font-size: 0.88rem;
   color: var(--text-muted);
   margin: 0.15rem 0 0;
 }
@@ -2051,7 +2177,7 @@ blockquote::before {
 }
 
 .contact-team figcaption {
-  font-size: 0.85rem;
+  font-size: 0.92rem;
   color: var(--text-muted);
 }
 
@@ -2074,7 +2200,7 @@ blockquote::before {
 
 .contact-form label {
   display: block;
-  font-size: 0.92rem;
+  font-size: 1.02rem;
   margin-bottom: 0.35rem;
   color: var(--navy);
   font-weight: 400;
@@ -2087,7 +2213,7 @@ blockquote::before {
   border: 1.5px solid rgba(0,0,0,0.12);
   border-radius: var(--radius-md);
   font-family: var(--font-body);
-  font-size: 0.98rem;
+  font-size: 1.1rem;
   background: #f8f8f8;
   color: var(--navy);
   transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
@@ -2161,7 +2287,7 @@ blockquote::before {
 
 .contact-info-label {
   display: block;
-  font-size: 0.72rem;
+  font-size: 0.82rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--text-muted);
@@ -2169,7 +2295,7 @@ blockquote::before {
 
 .contact-info-value {
   display: block;
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: var(--navy);
   word-break: break-all;
 }
@@ -2225,7 +2351,7 @@ footer::after {
 
 .footer-tagline {
   font-style: italic;
-  font-size: 0.88rem;
+  font-size: 0.95rem;
   color: rgba(255,255,255,0.55);
   margin-bottom: 0;
   letter-spacing: 0.02em;
@@ -2268,7 +2394,7 @@ footer::after {
 }
 
 .footer-nav h4 {
-  font-size: 0.78rem;
+  font-size: 0.88rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: rgba(255,255,255,0.4);
@@ -2278,7 +2404,7 @@ footer::after {
 
 .footer-nav a {
   display: block;
-  font-size: 0.92rem;
+  font-size: 1.02rem;
   color: rgba(255,255,255,0.7);
   text-decoration: none;
   padding: 0.3rem 0;
@@ -2298,7 +2424,7 @@ footer::after {
 }
 
 .footer-contact h4 {
-  font-size: 0.78rem;
+  font-size: 0.88rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: rgba(255,255,255,0.4);
@@ -2324,13 +2450,13 @@ footer::after {
 }
 
 .team-photos figcaption {
-  font-size: 0.72rem;
+  font-size: 0.82rem;
   margin-top: 0.25rem;
   opacity: 0.6;
 }
 
 .footer-email {
-  font-size: 0.82rem;
+  font-size: 0.92rem;
   color: rgba(255,255,255,0.6);
   text-decoration: none;
   transition: color var(--transition-fast);
@@ -2357,7 +2483,7 @@ footer::after {
   gap: 0.85rem;
   text-decoration: none;
   color: rgba(255,255,255,0.7);
-  font-size: 0.88rem;
+  font-size: 0.95rem;
   transition: color var(--transition-fast);
 }
 
@@ -2395,7 +2521,7 @@ footer::after {
   text-align: center;
   padding: 1.25rem 0;
   border-top: 1px solid rgba(255,255,255,0.06);
-  font-size: 0.78rem;
+  font-size: 0.88rem;
   opacity: 0.4;
 }
 
@@ -2492,7 +2618,7 @@ footer::after {
 .tab-btn {
   padding: 0.65rem 1.25rem;
   font-family: var(--font-body);
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   background: none;
   border: none;
   color: var(--text-muted);
@@ -2975,7 +3101,7 @@ footer::after {
 /* --- Hover hint --- */
 .timeline-card-hint {
   display: block;
-  font-size: 0.72rem;
+  font-size: 0.82rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--text-muted);
@@ -3002,7 +3128,7 @@ footer::after {
   border-left: none;
   box-shadow: none;
   text-align: left;
-  font-size: 0.98rem;
+  font-size: 1.1rem;
   max-width: none;
 }
 
@@ -3248,7 +3374,7 @@ footer::after {
   }
 
   .venn-badge-title {
-    font-size: 0.78rem;
+    font-size: 0.88rem;
   }
 
   .venn-diagram .venn-side-left {
