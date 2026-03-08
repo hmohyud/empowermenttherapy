@@ -59,8 +59,21 @@
   <section class="hero-clouds-section" id="heroCloudsSection">
     <canvas id="cloudCanvas"></canvas>
     <div class="hero-clouds-overlay">
-      <h1 id="heroTitle" class="hero-clouds-title">Empowerment Therapy Institute</h1>
-      <img src="images/logo-body.png" alt="Empowerment Therapy Logo" class="hero-logo">
+      <div class="hero-emblem" id="heroEmblem">
+        <svg class="hero-curved-text" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <path id="curveTop" d="M 50,200 A 150,150 0 0,1 350,200" fill="none"/>
+            <path id="curveBottom" d="M 60,220 A 140,140 0 0,0 340,220" fill="none"/>
+          </defs>
+          <text class="hero-svg-text hero-svg-top">
+            <textPath href="#curveTop" startOffset="50%" text-anchor="middle">EMPOWERMENT</textPath>
+          </text>
+          <text class="hero-svg-text hero-svg-bottom">
+            <textPath href="#curveBottom" startOffset="50%" text-anchor="middle">THERAPY INSTITUTE</textPath>
+          </text>
+        </svg>
+        <img src="images/logo-body.png" alt="Empowerment Therapy Logo" class="hero-logo" id="heroLogo">
+      </div>
       <p class="hero-tagline">Training empowerment practitioners around the world.</p>
     </div>
   </section>
@@ -698,19 +711,36 @@
       return chars;
     }
 
-    // Split hero title into chars and animate
-    var titleChars=splitChars('heroTitle');
-    gsap.set(titleChars,{opacity:0,y:40,rotateX:-90,transformOrigin:'50% 100%'});
+    // Animate hero emblem — logo + curved text
+    var heroEmblem=document.getElementById('heroEmblem');
+    var heroLogo=document.getElementById('heroLogo');
+    var curvedText=document.querySelector('.hero-curved-text');
+
+    if(heroEmblem) gsap.set(heroEmblem,{opacity:0,scale:0.5});
+    if(heroLogo) gsap.set(heroLogo,{opacity:0,scale:0.2,rotation:-90});
+    if(curvedText) gsap.set(curvedText,{opacity:0});
 
     function startTitleAnimation(){
-      gsap.to(titleChars,{
+      if(heroEmblem) gsap.to(heroEmblem,{
+        duration:1.2,
+        opacity:1,
+        scale:1,
+        ease:'power3.out',
+        delay:0.3
+      });
+      if(heroLogo) gsap.to(heroLogo,{
+        duration:1.4,
+        opacity:1,
+        scale:1,
+        rotation:0,
+        ease:'elastic.out(1,0.5)',
+        delay:0.6
+      });
+      if(curvedText) gsap.to(curvedText,{
         duration:1.0,
         opacity:1,
-        y:0,
-        rotateX:0,
-        ease:'power3.out',
-        stagger:{each:0.035},
-        delay:0.5
+        ease:'power2.out',
+        delay:0.9
       });
     }
 
@@ -859,17 +889,52 @@
     if(!canvas) return;
     var section=document.getElementById('heroCloudsSection');
 
+    // CSS cloud fallback for when WebGL is unavailable
+    function addCSSClouds(){
+      section.classList.add('no-webgl');
+      for(var i=0;i<5;i++){
+        var cloud=document.createElement('div');
+        cloud.className='css-cloud';
+        section.insertBefore(cloud,section.firstChild);
+      }
+    }
+
+    // Test WebGL availability on a disposable canvas FIRST
+    var testCanvas=document.createElement('canvas');
+    var testGL=testCanvas.getContext('webgl2')||testCanvas.getContext('webgl')||testCanvas.getContext('experimental-webgl');
+    if(!testGL){
+      console.warn('WebGL not supported, using CSS cloud fallback');
+      addCSSClouds();
+      return;
+    }
+    // Clean up test canvas
+    testCanvas=null; testGL=null;
+
     // Soft sky blue fog
     var fogColor=new THREE.Color(0x8abcd4);
 
     // Renderer — opaque, fog-colored background (like original mrdoob demo)
-    var renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:false});
+    var renderer;
+    try {
+      renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:false});
+    } catch(e) {
+      console.warn('WebGL renderer failed, using CSS cloud fallback');
+      addCSSClouds();
+      return;
+    }
+    // Verify the renderer actually got a working GL context
+    var gl=null;
+    try { gl=renderer.getContext(); } catch(e){}
+    if(!gl){
+      console.warn('WebGL context unavailable, using CSS cloud fallback');
+      addCSSClouds();
+      return;
+    }
+    var isMobile=window.innerWidth<768;
     renderer.setPixelRatio(Math.min(window.devicePixelRatio,1.5));
     renderer.setClearColor(fogColor);
 
     var scene=new THREE.Scene();
-
-    var isMobile=window.innerWidth<768;
     var fov=isMobile?50:30;
     var camera=new THREE.PerspectiveCamera(fov,section.clientWidth/section.clientHeight,1,3000);
     camera.position.z=6000;
@@ -931,8 +996,9 @@
         transparent:true
       });
 
-      // Build cloud geometry
-      var CLOUD_COUNT=isMobile?3000:8000;
+      // Build cloud geometry — fewer clouds on mobile, but SAME z-depth coverage
+      var CLOUD_COUNT=isMobile?2000:8000;
+      var Z_DEPTH=8000; // Must match animation loop range
       var ySpread=isMobile?80:200;
       var xSpread=isMobile?600:1000;
       var geometries=[];
@@ -941,8 +1007,10 @@
       for(var i=0;i<CLOUD_COUNT;i++){
         var g=planeGeo.clone();
         var matrix=new THREE.Matrix4();
+        // Z position: spread evenly across full depth range (not tied to cloud index)
+        var zPos=i*(Z_DEPTH/CLOUD_COUNT);
         matrix.compose(
-          new THREE.Vector3(Math.random()*xSpread-xSpread/2,-Math.random()*Math.random()*ySpread-15,i),
+          new THREE.Vector3(Math.random()*xSpread-xSpread/2,-Math.random()*Math.random()*ySpread-15,zPos),
           new THREE.Quaternion().setFromEuler(new THREE.Euler(0,0,Math.random()*Math.PI)),
           new THREE.Vector3(1,1,1).multiplyScalar(Math.random()*Math.random()*1.5+0.5)
         );
@@ -961,22 +1029,41 @@
       startAnimate();
     }
 
-    // Try loading external texture, fall back to generated one
+    // Use generated texture immediately for reliable mobile support,
+    // then upgrade to HD texture if it loads
+    try {
+      var fallbackTex=makeFallbackTexture();
+      initClouds(fallbackTex);
+    } catch(e) {
+      console.warn('Cloud init failed, using CSS fallback:',e);
+      addCSSClouds();
+      return;
+    }
+
+    // Try loading HD texture — upgrade if successful
     var textureLoader=new THREE.TextureLoader();
     textureLoader.crossOrigin='anonymous';
     textureLoader.load(
       'https://mrdoob.com/lab/javascript/webgl/clouds/cloud10.png',
-      function(tex){ initClouds(tex); },
+      function(tex){
+        scene.children.forEach(function(child){
+          if(child.material&&child.material.uniforms&&child.material.uniforms.map){
+            child.material.uniforms.map.value=tex;
+            child.material.needsUpdate=true;
+          }
+        });
+      },
       undefined,
-      function(){ initClouds(makeFallbackTexture()); }
+      function(){ /* HD texture failed — fallback texture is already in use */ }
     );
 
-    // Resize
+    // Resize — also adjust FOV for mobile
     function onResize(){
       var w=section.clientWidth;
       var h=section.clientHeight;
       if(!w||!h) return;
       camera.aspect=w/h;
+      camera.fov=window.innerWidth<768?50:30;
       camera.updateProjectionMatrix();
       renderer.setSize(w,h);
     }
