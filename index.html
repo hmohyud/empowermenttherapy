@@ -60,11 +60,17 @@
     <canvas id="cloudCanvas"></canvas>
     <div class="hero-clouds-overlay">
       <div class="hero-emblem" id="heroEmblem">
-        <svg class="hero-curved-text" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+        <!-- Frosted glass circle behind everything -->
+        <div class="hero-frost-circle" id="heroFrostCircle"></div>
+        <svg class="hero-curved-text" viewBox="0 0 440 440" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <path id="curveTop" d="M 50,200 A 150,150 0 0,1 350,200" fill="none"/>
-            <path id="curveBottom" d="M 60,220 A 140,140 0 0,0 340,220" fill="none"/>
+            <!-- Arcs close to logo (6px gap feel), top tighter for its larger font -->
+            <path id="curveTop" d="M 95,220 A 125,125 0 0,1 345,220" fill="none"/>
+            <path id="curveBottom" d="M 80,220 A 140,140 0 0,0 360,220" fill="none"/>
           </defs>
+          <!-- Thin decorative ring on the outer edge of the frost circle -->
+          <circle cx="220" cy="220" r="195" fill="none" stroke="rgba(255,253,247,0.18)" stroke-width="0.75" stroke-dasharray="3 8" class="hero-ring-outer"/>
+          <!-- Curved text on the inner rim -->
           <text class="hero-svg-text hero-svg-top">
             <textPath href="#curveTop" startOffset="50%" text-anchor="middle">EMPOWERMENT</textPath>
           </text>
@@ -711,36 +717,53 @@
       return chars;
     }
 
-    // Animate hero emblem — logo + curved text
+    // Animate hero emblem — staggered entrance: frost circle → logo → text → tagline
     var heroEmblem=document.getElementById('heroEmblem');
     var heroLogo=document.getElementById('heroLogo');
-    var curvedText=document.querySelector('.hero-curved-text');
+    var frostCircle=document.getElementById('heroFrostCircle');
+    var ringOuter=document.querySelector('.hero-ring-outer');
+    var svgTextTop=document.querySelector('.hero-svg-top');
+    var svgTextBottom=document.querySelector('.hero-svg-bottom');
+    var heroTagline=document.querySelector('.hero-tagline');
 
-    if(heroEmblem) gsap.set(heroEmblem,{opacity:0,scale:0.5});
+    // Initial hidden states
+    if(heroEmblem) gsap.set(heroEmblem,{opacity:0});
+    if(frostCircle) gsap.set(frostCircle,{opacity:0,scale:0.5});
+    if(ringOuter) gsap.set(ringOuter,{opacity:0,scale:0,transformOrigin:'220px 220px'});
     if(heroLogo) gsap.set(heroLogo,{opacity:0,scale:0.2,rotation:-90});
-    if(curvedText) gsap.set(curvedText,{opacity:0});
+    if(svgTextTop) gsap.set(svgTextTop,{opacity:0});
+    if(svgTextBottom) gsap.set(svgTextBottom,{opacity:0});
+    if(heroTagline) gsap.set(heroTagline,{opacity:0,y:15});
 
     function startTitleAnimation(){
+      // 1. Emblem container fades in
       if(heroEmblem) gsap.to(heroEmblem,{
-        duration:1.2,
-        opacity:1,
-        scale:1,
-        ease:'power3.out',
-        delay:0.3
+        duration:0.6, opacity:1, ease:'power2.out', delay:0.2
       });
+      // 2. Frosted circle expands in
+      if(frostCircle) gsap.to(frostCircle,{
+        duration:1.0, opacity:1, scale:1, ease:'power3.out', delay:0.3
+      });
+      // 3. Decorative ring fades in
+      if(ringOuter) gsap.to(ringOuter,{
+        duration:1.0, opacity:1, scale:1, rotation:30,
+        ease:'power3.out', delay:0.4
+      });
+      // 4. Logo twists in with spin
       if(heroLogo) gsap.to(heroLogo,{
-        duration:1.4,
-        opacity:1,
-        scale:1,
-        rotation:0,
-        ease:'elastic.out(1,0.5)',
-        delay:0.6
+        duration:1.4, opacity:1, scale:1, rotation:0,
+        ease:'elastic.out(1,0.5)', delay:0.6
       });
-      if(curvedText) gsap.to(curvedText,{
-        duration:1.0,
-        opacity:1,
-        ease:'power2.out',
-        delay:0.9
+      // 5. Text fades in
+      if(svgTextTop) gsap.to(svgTextTop,{
+        duration:0.9, opacity:1, ease:'power2.out', delay:0.9
+      });
+      if(svgTextBottom) gsap.to(svgTextBottom,{
+        duration:0.9, opacity:1, ease:'power2.out', delay:1.1
+      });
+      // 6. Tagline slides up
+      if(heroTagline) gsap.to(heroTagline,{
+        duration:0.8, opacity:1, y:0, ease:'power2.out', delay:1.3
       });
     }
 
