@@ -270,7 +270,7 @@
                 </div>
                 <div class="level-detail-block">
                   <h4>Schedule &amp; Duration</h4>
-                  <p><strong>When:</strong> Thursdays, 9:00&ndash;10:30 AM Central Time</p>
+                  <p id="level1-meeting-time"><strong>When:</strong> Thursdays, 9:00&ndash;10:30 AM CT</p>
                   <p><strong>Duration:</strong> 6 months &mdash; 24 sessions (Jan&ndash;Jun &amp; Jul&ndash;Dec)</p>
                   <p><strong>Join anytime:</strong> 1&ndash;4 catch-up sessions available for new participants</p>
                   <p><strong>Certificate:</strong> Attend 20 of 24 sessions</p>
@@ -1051,6 +1051,28 @@
         h.textContent = 'Tap to explore';
       });
     }
+
+    // Convert Level detail meeting times to viewer's local timezone
+    (function(){
+      try {
+        var days = ['Sundays','Mondays','Tuesdays','Wednesdays','Thursdays','Fridays','Saturdays'];
+        var tf = {hour:'numeric', minute:'2-digit', hour12:true};
+        // Level 1: Thursdays 9:00-10:30 AM CT — use a reference Thursday in CT
+        // Jan 8 2026 is a Thursday. 9:00 AM CT = 15:00 UTC (CST)
+        var l1Start = new Date('2026-01-08T15:00:00Z');
+        var l1End = new Date('2026-01-08T16:30:00Z');
+        var l1Day = days[l1Start.getDay()];
+        var l1T1 = new Intl.DateTimeFormat(undefined, tf).format(l1Start);
+        var l1T2 = new Intl.DateTimeFormat(undefined, tf).format(l1End);
+        var tz = '';
+        new Intl.DateTimeFormat(undefined, {timeZoneName:'short'}).formatToParts(l1Start).forEach(function(p){
+          if (p.type === 'timeZoneName') tz = p.value;
+        });
+        var l1Time = l1Day + ', ' + l1T1 + '\u2013' + l1T2 + ' ' + tz;
+        var l1El = document.getElementById('level1-meeting-time');
+        if (l1El) l1El.innerHTML = '<strong>When:</strong> ' + l1Time;
+      } catch(e) {}
+    }());
 
     // Close mobile nav on anchor click
     document.querySelectorAll('nav a').forEach(a => {
